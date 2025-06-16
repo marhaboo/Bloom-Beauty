@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+.rating_item {
+  cursor: pointer;
+  font-size: 18px;
+}
+.rating {
+  display: inline-flex;
+  gap: 5px;
+  justify-items: right;
+  flex-direction: row-reverse;
+  align-items: end;
+}
+.rating_item:hover,
+.rating_item:hover ~ .rating_item {
+  color: #ffa500;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;           
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+}

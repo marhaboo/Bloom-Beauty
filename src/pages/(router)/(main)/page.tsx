@@ -8,6 +8,7 @@ import ProductShowcase from "@/widgets/main/product showcase/product shocase";
 import OnTheBlog from "@/widgets/main/on-the-blog/on-the-blog";
 import QuizCard from "@/widgets/main/qiuz-card/quiz-card";
 import ShareCard from "@/widgets/main/share-card/share-card";
+import Footer from "@/widgets/main/footer/footer";
 export default function MainPage() {
   return (
     <>
@@ -21,6 +22,7 @@ export default function MainPage() {
         <OnTheBlog/>
         <QuizCard/>
         <ShareCard/>
+        <Footer />
       </div>
     </>
   );

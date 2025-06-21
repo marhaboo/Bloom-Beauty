@@ -29,7 +29,7 @@ const Footer = () => {
             <Image src={logo} alt="Bloom Beauty Logo" />
             <div className="flex flex-col gap-1">
               <p className="text-[12px] font-normal">
-                Discover nature's beauty with our natural care products.
+                Discover nature&apos;s beauty with our natural care products.
               </p>
               <div className="flex gap-2 items-center">
                 <Phone className="text-[#F5A3B7] w-[14px] h-[14px] font-normal" />

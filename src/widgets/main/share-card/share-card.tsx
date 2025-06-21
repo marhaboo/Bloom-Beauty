@@ -1,5 +1,4 @@
 "use client";
-import ArrivalsCart from "@/features/new-arrivals/newArrivals";
 import Image_1 from "./images/1inst shots-2.png";
 import Image_2 from "./images/img.png";
 import Image_3 from "./images/1inst shots-3.png";

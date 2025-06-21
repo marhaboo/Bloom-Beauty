@@ -1,8 +1,8 @@
 import React from "react";
 
 type ButtonProps = {
-  text: String;
-  property?: String;
+  text: string;
+  property?: string;
 };
 
 const SecondButton = ({ text, property }: ButtonProps) => {

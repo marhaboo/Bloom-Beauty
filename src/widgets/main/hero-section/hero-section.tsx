@@ -1,4 +1,4 @@
-import Image from "node_modules/next/image";
+import Image from "next/image";
 import beautyKit from "./images/beauty kit.png";
 import Button from "@/features/base-button/Button";
 export default function HeroSection() {

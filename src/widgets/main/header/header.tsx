@@ -7,7 +7,7 @@ import { useState } from "react";
 import ShopAllOnHover from "../shop-all-on-hover/shop-all-on-hover";
 export default function Header() {
   const [shopAll, setShop] = useState(false);
-  const [bestsellers, setBestsellers] = useState(false);
+  // const [bestsellers, setBestsellers] = useState(false);
   return (
     <>
       <header className="flex bg-white justify-evenly my-4 items-center text-[#484848] ">
@@ -25,8 +25,8 @@ export default function Header() {
               </Link>{" "}
             </li>
             <li
-              onMouseEnter={() => setBestsellers(true)}
-              onMouseLeave={() => setBestsellers(false)}
+              // onMouseEnter={() => setBestsellers(true)}
+              // onMouseLeave={() => setBestsellers(false)}
             >
               <Link className=" hover:text-[#F5A3B7] " href={"/bestsellers"}>
                 BESTSELLERS

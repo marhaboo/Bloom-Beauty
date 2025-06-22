@@ -1,13 +1,13 @@
 "use client";
 import { Listbox } from "@headlessui/react";
-import { Check, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 type CustomSelectTypes = {
-  options: string[]; 
-}
+  options: string[];
+};
 
-export default function CustomSelect({options}:CustomSelectTypes) {
+export default function CustomSelect({ options }: CustomSelectTypes) {
   const [selected, setSelected] = useState(options[0]);
 
   return (

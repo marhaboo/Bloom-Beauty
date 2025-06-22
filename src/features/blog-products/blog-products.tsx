@@ -1,8 +1,6 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
-import SecondButton from "../second-button/arrow-button";
 import HasgtagButton from "../hashtag-button/hasgtagButton";
-import Button from "../base-button/Button";
 import PrimaryButtton from "../primary-buttton/primary-buttton";
 
 type BlogProducts = {

@@ -1,14 +1,12 @@
 import NewArrivals from "@/widgets/main/arrivals/arrivals";
-import BestSellers from "@/widgets/main/bestsellers/bestsellers";
-import Header from "@/widgets/main/header/header";
-import HeroSection from "@/widgets/main/hero-section/hero-section";
+import BestSellers from "@/widgets/main/bestsellers/bestsellers";import HeroSection from "@/widgets/main/hero-section/hero-section";
 import ImageProductShowcase from "../(main)/images/IMAGE-1.png";
 import ImageProductShowcase_2 from "../(main)/images/IMAGE.png";
 import ProductShowcase from "@/widgets/main/product showcase/product shocase";
 import OnTheBlog from "@/widgets/main/on-the-blog/on-the-blog";
 import QuizCard from "@/widgets/main/qiuz-card/quiz-card";
 import ShareCard from "@/widgets/main/share-card/share-card";
-import Footer from "@/widgets/main/footer/footer";
+
 export default function MainPage() {
   return (
     <>

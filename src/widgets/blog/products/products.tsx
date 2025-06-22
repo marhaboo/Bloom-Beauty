@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import BlogProducts from "@/features/blog-products/blog-products";
 import ArrowButton from "@/features/arrow-button/arrow-button";
 import Pagination from "@/features/paginations/paginations";

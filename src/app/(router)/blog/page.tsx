@@ -1,14 +1,12 @@
-import CategoryScroll from "@/widgets/blog/category-scroll/category-scroll";
-import Products from "@/widgets/blog/products/products";
-import React from "react";
+import BlogPage from '@/pages/(router)/blog/blog-page'
+import React from 'react'
 
 const Blog = () => {
-return(
-  <>
-  <CategoryScroll/>
-  <Products/>
-  </>
-)
-};
+  return (
+    <div>
+      <BlogPage/>
+    </div>
+  )
+}
 
-export default Blog;
+export default Blog

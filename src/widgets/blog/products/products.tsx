@@ -50,7 +50,7 @@ You’ve come to the right place! To get back into a rhythm with your skincare r
 
 const Products = () => {
   return (
-    <div className="flex flex-col gap-10  py-20">
+    <div className="flex flex-col gap-10 bg-[#F9FAFC]  py-20">
       {posts.map((post, ind) => (
         <BlogProducts key={ind} {...post} />
       ))}

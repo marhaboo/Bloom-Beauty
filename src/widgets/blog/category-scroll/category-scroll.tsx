@@ -37,8 +37,8 @@ const CategoryScroll = () => {
   };
 
   return (
-    <div className="relative w-full">
-      <div ref={scrollRef} className="overflow-x-auto scrollbar-hidden">
+    <div className="relative w-full  ">
+      <div ref={scrollRef} className=" bg-[#F9FAFC] overflow-x-auto scrollbar-hidden">
         <div className="flex space-x-3 bg-[#F7CFDA] py-6 px-6 rounded-xl w-max">
           {categories.map((cat, idx) => (
             <button

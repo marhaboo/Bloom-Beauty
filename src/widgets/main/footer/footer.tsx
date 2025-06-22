@@ -7,6 +7,7 @@ import InstagramIcon from "./images/Vector-3.svg";
 import TelegramIcon from "./images/Vector-4.svg";
 import logo from "../../../../public/Bloom Beauty_2.svg";
 import { Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 const Footer = () => {
   return (
     <div className="flex flex-col  ">
@@ -60,8 +61,12 @@ const Footer = () => {
             </div>
             <div className="flex flex-col gap-2">
               <p className="text-[#BFB9CF] text">CUSTOMER CARE</p>
-              <p>About us</p>
-              <p>Blog</p>
+              <p>
+                <Link href={"/about-us"}>About us</Link>
+              </p>
+              <p>
+                <Link href={"/blog"}>Blog</Link>
+              </p>
             </div>
           </div>
           <div className="flex flex-col gap-1">

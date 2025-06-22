@@ -20,7 +20,7 @@ const BlogProducts = ({
   property
 }: BlogProducts) => {
   return (
-    <div className={`flex gap-5 px-10 ${property} `}>
+    <div className={`flex gap-5 px-10 bg-[#F9FAFC] ${property} `}>
       <div className="w-1/2">
         <Image src={photoSrc} alt={title} />
       </div>

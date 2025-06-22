@@ -13,7 +13,7 @@ import Button from "@/features/base-button/Button";
 import { Instagram } from "lucide-react";
 const ShareCard = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center pb-20">
       <div className="flex justify-center text-[#383838] font-bold items-center gap-8">
         <Image
           src={Icon}

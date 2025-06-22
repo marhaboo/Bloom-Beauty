@@ -1,6 +1,6 @@
+import ArrowButton from "@/features/arrow-button/arrow-button";
 import Button from "@/features/base-button/Button";
 import HasgtagButton from "@/features/hashtag-button/hasgtagButton";
-import SecondButton from "@/features/second-button/second-button";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 
@@ -35,7 +35,7 @@ const ProductShowcase = ({
         </div>
         <div>
           <Button text={"Shop Now"} />
-          <SecondButton text={"Explore More"} />
+          <ArrowButton text={"Explore More"} />
         </div>
       </div>
       <Image width={598} height={500} src={imageUrl} alt={title} />

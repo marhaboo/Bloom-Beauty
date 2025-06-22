@@ -1,15 +1,16 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
+import PrimaryButtton from "../primary-buttton/primary-buttton";
 
 type ArrivalsType = {
   imageUrl: StaticImageData;
   title: string;
   info: string;
   price: string;
-  width?:  number;
+  width?: number;
   noRating?: boolean;
-  height?:  number;
+  height?: number;
 };
 
 const ArrivalsCart = ({
@@ -33,7 +34,7 @@ const ArrivalsCart = ({
       <div className="flex flex-col px-5 py-3 gap-1.5">
         <div
           className=" flex flex-col gap-1.5 "
-          style={{ height: height || "250px" }}
+          style={{ height: height || "200px" }}
         >
           <p className={`font-medium ${isHover ? "text-[#F5A3B7]" : null} `}>
             {title}
@@ -59,13 +60,12 @@ const ArrivalsCart = ({
           <p className="text-[#697586] text-sm">{info}</p>
           <p>{price}</p>
         </div>
-        <button
+        <div
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
-          className="border-[#383838] border rounded p-1 cursor-pointer hover:bg-[#323232] hover:text-white"
         >
-          Add to bag
-        </button>
+          <PrimaryButtton  text="Add to bag" />
+        </div>
       </div>
     </div>
   );

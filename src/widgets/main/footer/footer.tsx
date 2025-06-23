@@ -18,18 +18,18 @@ const Footer = () => {
             "linear-gradient(to right, #252525 0%, #3A3A3A 48%, #323232 100%)",
         }}
       >
-        <div className="flex justify-center gap-5 pt-10 ">
+        <div className="flex  justify-between md:justify-center gap-5 pt-10 ">
           <Image src={FacebookIcon} alt="FacebookIcon" />
           <Image src={PinteresIcon} alt="PinteresIcon" />
           <Image src={TwitterIcon} alt="TwitterIcon" />
           <Image src={InstagramIcon} alt="InstagramIcon" />
           <Image src={TelegramIcon} alt="TelegramIcon" />
         </div>
-        <div className="text-white flex justify-between  py-10   text-[14px] ">
-          <div className="flex flex-col w-[176px] gap-3">
+        <div className="text-white flex-col md:flex-row flex justify-between gap-5 md:gap-0  py-10   text-[14px] ">
+          <div className="flex flex-col md:w-[176px] gap-3 ">
             <Image src={logo} alt="Bloom Beauty Logo" />
             <div className="flex flex-col gap-1">
-              <p className="text-[12px] font-normal">
+              <p className="md:text-[12px] text-[14px] font-normal">
                 Discover nature&apos;s beauty with our natural care products.
               </p>
               <div className="flex gap-2 items-center">
@@ -46,7 +46,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-10">
+          <div className="flex flex-col md:flex-row gap-10">
             <div className="flex flex-col gap-2">
               <p className="text-[#BFB9CF] text">HELP</p>
               <p>Contact us</p>
@@ -69,7 +69,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col items-center md:items-start gap-1">
             <p>SIGN UP FOR EMAILS</p>
             <p className="text-[12px] font-normal">
               Stay informed, subscribe to our newsletter now!
@@ -77,7 +77,7 @@ const Footer = () => {
             <input
               type="text"
               placeholder="Email"
-              className="p-2 text-[#BFB9CF] bg-white"
+              className="p-2 text-[#BFB9CF] w-full md:w-auto rounded bg-white"
               name=""
               id=""
             />

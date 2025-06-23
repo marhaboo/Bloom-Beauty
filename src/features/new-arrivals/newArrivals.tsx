@@ -36,9 +36,11 @@ const ArrivalsCart = ({
     >
       {isHover && (
         <Heart
-          className={`absolute right-5 top-3 cursor-pointer transition-all duration-200 
-            stroke-[${isLiked ? "#F5A3B7" : "#BFB9CF"}] 
-            fill-[${isLiked ? "#F5A3B7" : "transparent"}]`}
+          className={`absolute right-5 top-3 cursor-pointer transition-all duration-200 ${
+            isLiked
+              ? "stroke-[#F5A3B7] fill-[#F5A3B7]"
+              : "stroke-[#BFB9CF] fill-transparent"
+          }`}
           onClick={() => setLiked(!isLiked)}
         />
       )}

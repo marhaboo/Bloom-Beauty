@@ -14,7 +14,7 @@ import { Instagram } from "lucide-react";
 const ShareCard = () => {
   return (
     <div className="flex flex-col items-center justify-center pb-20">
-      <div className="flex justify-center text-[#383838] font-bold items-center gap-8">
+      <div className="flex justify-center px-15 text-[#383838]  font-bold items-center gap-8">
         <Image
           src={Icon}
           alt="icon"
@@ -22,7 +22,7 @@ const ShareCard = () => {
           height={50}
           className="rotate-270  scale-x-[-1]"
         />
-        <h3 className="text-2xl">
+        <h3 className="md:text-2xl text-xl">
           SHARE HOW YOU BLOSSOMED WITH{" "}
           <span className="text-[#F5A3B7]">#BLOOMBEAUTY</span>{" "}
         </h3>
@@ -34,7 +34,7 @@ const ShareCard = () => {
           className="rotate-90"
         />
       </div>
-      <p className="text-[#697586] text-[18px]">See all</p>
+      <p className="text-[#697586] hidden md:block  text-[18px]">See all</p>
       <div className="relative w-full ">
         <div className="flex mt-10 mb-5 gap-1 flex-wrap justify-center  ">
           {[
@@ -49,10 +49,10 @@ const ShareCard = () => {
           ].map((img, index) => (
             <div
               key={index}
-              className="inline-block group relative  mr-4 min-w-[250px]"
+              className="inline-block group relative md:mr-4 md:min-w-[250px]"
             >
               <Image
-                className=" pb-3  group-hover:blur-xs transition duration-300 ease-in-out"
+                className=" pb-3 w-[150px] h-[150px] md:w-auto md:h-auto group-hover:blur-xs transition duration-300 ease-in-out"
                 src={img}
                 alt="Beauty Kit"
               />

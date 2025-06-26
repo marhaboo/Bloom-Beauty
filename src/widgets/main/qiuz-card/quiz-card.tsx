@@ -11,6 +11,7 @@ const QuizCard = () => {
           alt="Beauty Kit"
           src={beautyKit}
           className="z-100 md:absolute md:bottom-[-20] md:left-60 w-[326px] h-[342px]"
+            style={{ objectFit: "contain" }} 
         />
         <Image
           alt="Beauty Kit Background"
@@ -19,7 +20,7 @@ const QuizCard = () => {
         />
         <div className=" md:w-[562px] w-full md:left-30 flex flex-col  items-start gap-3 md:top-30 text-[#383838] ">
           <h2 className=" text-[40px] font-bold">The Skin Quiz</h2>
-          <p className="text-[18px] w-[350px] sm:w-[400px] ">
+          <p className="text-[18px]  sm:w-[400px] ">
             Meet the quiz that will curate a routine just just just as unique as
             you are.
           </p>

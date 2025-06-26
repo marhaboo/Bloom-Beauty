@@ -8,25 +8,16 @@ type ArrivalsType = {
   imageUrl: StaticImageData;
   title: string;
   info: string;
-  price: string;
-  height?: number;
 };
 
-const ArrivalsCart = ({
-  imageUrl,
-  title,
-  info,
-  price,
-  height = 200
-}: ArrivalsType) => {
-  const [rating, setRating] = useState(0);
+const BlogCard = ({ imageUrl, title, info }: ArrivalsType) => {
   const [isHover, setHover] = useState(false);
   const [isLiked, setLiked] = useState(false);
 
   return (
     <div
       className={`flex flex-col relative text-[#383838] transition-all duration-300
-        w-full max-w-[250px] md:max-w-[392px]
+        w-full max-w-[320px] md:max-w-[392px]
       `}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -47,35 +38,21 @@ const ArrivalsCart = ({
         className="w-full h-auto object-cover"
       />
       <div className="flex flex-col px-5 py-3 gap-1.5">
-        <div className={`flex flex-col gap-1.5  h-[${height}px] `} >
-          <p className={`font-medium ${isHover ? "text-[#F5A3B7]" : ""}`}>
+        <div className="flex flex-col gap-1.5 ">
+          <p
+            className={`font-medium text-xl ${isHover ? "text-[#F5A3B7]" : ""}`}
+          >
             {title}
           </p>
 
-        
-            <div className="rating flex gap-1 self-start">
-              <span className="text-[#697586]">({rating})</span>
-              {[5, 4, 3, 2, 1].map((value) => (
-                <span
-                  key={value}
-                  onClick={() => setRating(value)}
-                  className={`text-xl cursor-pointer rating_item ${
-                    value <= rating ? "text-[#ffa500]" : "text-[#DFE1E3]"
-                  }`}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-       
-
-          <p className="text-[#697586] text-sm">{info}</p>
-          <p>{price}</p>
+          <p className="text-[#697586] h-[81px]  line-clamp-3 md:line-clamp-4 text-[16px]">
+            {info}
+          </p>
         </div>
-        <PrimaryButtton text="Add to bag" />
+        <PrimaryButtton text="Read More" />
       </div>
     </div>
   );
 };
 
-export default ArrivalsCart;
+export default BlogCard;

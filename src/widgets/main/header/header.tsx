@@ -9,6 +9,7 @@ import MenuMob from "../menu-mob/menu-mob";
 export default function Header() {
   const [shopAll, setShop] = useState(false);
   const [isMenuOpen, setMenu] = useState(false);
+
   // const [bestsellers, setBestsellers] = useState(false);
   return (
     <>
@@ -59,15 +60,15 @@ export default function Header() {
           </ul>
         </nav>
         <div className="flex space-x-3 justify-center items-center gap-4 ">
-          <div className="lg:flex flex-col hidden  justify-center items-center ">
+          <div className="lg:flex cursor-pointer flex-col hidden hover:text-[#F5A3B7]  justify-center items-center ">
             <Search className="w-6 h-6" />
             <p className="">SEARCH</p>
           </div>
-          <div className="lg:flex hidden  flex-col justify-center items-center">
+          <div className="lg:flex hidden cursor-pointer hover:text-[#F5A3B7]  flex-col justify-center items-center">
             <User className="w-6 h-6" />
             <p>ACCOUNT</p>
           </div>
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col cursor-pointer hover:text-[#F5A3B7] justify-center items-center">
             <ShoppingBasket className="w-6 h-6" />
             <p>CART</p>
           </div>

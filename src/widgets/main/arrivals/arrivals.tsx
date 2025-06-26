@@ -53,7 +53,7 @@ const NewArrivals = () => {
         />
       </div>
       <p className="text-[#697586] text-[18px]">See all</p>
-      <div className="relative w-full max-w-[1200px]">
+      <div className="relative w-full lg:max-w-[1200px]">
         <button className="flex justify-center scrollbar-hidden items-center scroll-smooth overflow-x-hidden bg-[#DEDAE5] rounded-full h-8 w-8 absolute opacity-65 top-1/2  left-0 translate-y-1/2   ">
           <ChevronLeft onClick={leftScroll} className="text-white" />
         </button>

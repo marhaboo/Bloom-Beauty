@@ -1,5 +1,6 @@
 import NewArrivals from "@/widgets/main/arrivals/arrivals";
-import BestSellers from "@/widgets/main/bestsellers/bestsellers";import HeroSection from "@/widgets/main/hero-section/hero-section";
+import BestSellers from "@/widgets/main/bestsellers/bestsellers";
+import HeroSection from "@/widgets/main/hero-section/hero-section";
 import ImageProductShowcase from "../(main)/images/IMAGE-1.png";
 import ImageProductShowcase_2 from "../(main)/images/IMAGE.png";
 import ProductShowcase from "@/widgets/main/product showcase/product shocase";
@@ -10,7 +11,7 @@ import ShareCard from "@/widgets/main/share-card/share-card";
 export default function MainPage() {
   return (
     <>
-      <div className="flex flex-col gap-20">
+      <div className="flex flex-col overflow-hidden gap-20 ">
         <HeroSection />
         <NewArrivals />
         <BestSellers />

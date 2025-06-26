@@ -1,5 +1,4 @@
 "use client";
-import ArrivalsCart from "@/features/new-arrivals/newArrivals";
 import React, { useRef, useState } from "react";
 import Image_1 from "./images/Rectangle 47.png";
 import Image_2 from "./images/Rectangle 47-1.png";
@@ -7,7 +6,27 @@ import Image_3 from "./images/Rectangle 47-2.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Icon from "./images/flower.svg";
 import Image from "next/image";
-const OnTheBlog = () => { 
+import BlogCard from "@/features/blog-card/blog-card";
+
+const blogData = [
+  {
+    image: Image_1,
+    title: "Cracking the Coconut Code",
+    info: "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams.",
+  },
+  {
+    image: Image_2,
+    title: "Bloom Beauty Best of 2023",
+    info: "Bloom Beauty Best of 2023 products winners are here.",
+  },
+  {
+    image: Image_3,
+    title: "7 Skincare Habits to Break Now",
+    info: "Great skincare is a long game—it doesn’t happen overnight, but little steps are made (nightly!) to get and keep your skin at its most radiant state.",
+  },
+];
+
+const OnTheBlog = () => {
   const scrollBar = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -22,13 +41,13 @@ const OnTheBlog = () => {
 
   const leftScroll = () => {
     if (scrollBar.current) {
-      scrollBar.current.scrollBy({ left: -300, behavior: "smooth" });
+      scrollBar.current.scrollBy({ left: -350, behavior: "smooth" });
     }
   };
 
   const rightScroll = () => {
     if (scrollBar.current) {
-      scrollBar.current.scrollBy({ left: 300, behavior: "smooth" });
+      scrollBar.current.scrollBy({ left: 410, behavior: "smooth" });
     }
   };
 
@@ -53,49 +72,30 @@ const OnTheBlog = () => {
       </div>
       <p className="text-[#697586] text-[18px]">See all</p>
       <div className="relative w-full max-w-[1200px]">
-        <button className="flex justify-center scrollbar-hidden items-center scroll-smooth overflow-x-hidden bg-[#DEDAE5] rounded-full h-8 w-8 absolute opacity-65 top-1/2  left-0 translate-y-1/2   ">
+        <button className="flex justify-center scrollbar-hidden items-center scroll-smooth overflow-x-hidden bg-[#DEDAE5] rounded-full h-8 w-8 absolute opacity-65 top-1/2 md:left-0 left-3 translate-y-1/2   ">
           <ChevronLeft onClick={leftScroll} className="text-white" />
         </button>
         <div
           ref={scrollBar}
           onScroll={handleScroll}
-          className="overflow-x-auto scrollbar-hidden flex my-10 gap-2 n scroll-smooth px-10 "
+          className="overflow-x-auto scrollbar-hidden flex pr-3 my-10 gap-2 n scroll-smooth px-10 "
         >
-          {[
-            Image_1,
-            Image_2,
-            Image_3,
-            Image_1,
-            Image_2,
-            Image_3,
-          ].map((img, index) => (
+          {[...blogData, ...blogData].map((data, index) => (
             <div
               key={index}
               className="inline-block no-scrollbar  mr-4 min-w-[392px]"
             >
-              <ArrivalsCart
-                imageUrl={img}
-                title={
-                  index % 2 !== 0
-                    ? "Cracking the Coconut Code"
-                    : "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams "
-                }
-                info={
-                  index % 2 !== 0
-                    ? "Bloom Beauty Best of 2023"
-                    : "Bloom Beauty Best of 2023 products winners are here."
-                }
-                price="32$"
-                width={392}
-                height={130}
-                noRating={true}
+              <BlogCard
+                imageUrl={data.image}
+                title={data.title}
+                info={data.info}
               />
             </div>
           ))}
         </div>
         <button
           onClick={rightScroll}
-          className="      bg-[#DEDAE5] flex justify-center items-center opacity-65 rounded-full h-8 w-8 top-1/2 absolute right-0 translate-y-1/2 "
+          className="  md:right-0  bg-[#DEDAE5] flex justify-center items-center opacity-65 rounded-full h-8 w-8 top-1/2 absolute right-6 translate-y-1/2 "
         >
           <ChevronRight className="text-white" />
         </button>

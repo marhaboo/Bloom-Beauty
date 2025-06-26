@@ -43,10 +43,7 @@ const ShopAllOverLay = () => {
   };
 
   return (
-    <div className="bg-white p-4 w-[289px]">
-      <h2 className="font-semibold text-[24px] text-[#383838] mb-4">
-        Shop All
-      </h2>
+    <div className="bg-white p-4 ">
       {shopAllData.map((item, ind) => (
         <div className="flex flex-col mb-2" key={ind}>
           <div
@@ -57,9 +54,9 @@ const ShopAllOverLay = () => {
               {item.title}
             </p>
             {openIndex === ind ? (
-              <ChevronUp className="text-[#697586] w-5 h-5" />
+              <ChevronUp className="text-[#697586] w-5 h-5 mr-1.5" />
             ) : (
-              <ChevronDown className="text-[#697586] w-5 h-5" />
+              <ChevronDown className="text-[#697586] w-5 h-5 mr-1.5" />
             )}
           </div>
           {openIndex === ind &&

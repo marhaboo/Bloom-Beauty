@@ -22,7 +22,7 @@ const ShareCard = () => {
           height={50}
           className="rotate-270  scale-x-[-1]"
         />
-        <h3 className="md:text-2xl text-xl">
+        <h3 className="md:text-2xl text-[18px] text-center">
           SHARE HOW YOU BLOSSOMED WITH{" "}
           <span className="text-[#F5A3B7]">#BLOOMBEAUTY</span>{" "}
         </h3>
@@ -52,11 +52,11 @@ const ShareCard = () => {
               className="inline-block group relative md:mr-4 md:min-w-[250px]"
             >
               <Image
-                className=" pb-3 w-[150px] h-[150px] md:w-auto md:h-auto group-hover:blur-xs transition duration-300 ease-in-out"
+                className=" pb-3 w-[150px] h-[150px]  md:w-[289px] md:h-[289px] group-hover:blur-xs transition duration-300 ease-in-out"
                 src={img}
                 alt="Beauty Kit"
               />
-              <div className="flex flex-col opacity-0 group-hover:opacity-100 absolute top-45 left-15 gap-3">
+              <div className="flex flex-col opacity-0 group-hover:opacity-100 absolute top-40 left-15 gap-3">
                 <div
                   className="flex  text-white bg-[#A5A5A5] hover:opacity-100 opacity-70 p-2 rounded-sm cursor-pointer
                  gap-2 justify-center "

@@ -4,7 +4,6 @@ import Clarifying from "./images/img.png";
 import ClayMask from "./images/img copy.png";
 import SilkFeel from "./images/img-1.png";
 import CloudJelly from "./images/img-2.png";
-import CloudJelly2 from "./images/img-2.png";
 import Innisfree2 from "./images/img-3.png";
 import Hyaluronic from "./images/img-1 copy.png";
 import Innisfree from "./images/img-2 copy.png";

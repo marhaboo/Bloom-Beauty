@@ -5,12 +5,10 @@ import { useState } from "react";
 
 type CustomSelectTypes = {
   options: string[];
-  width?: number;
 };
 
 export default function CustomSelect({
   options,
-  width = 52,
 }: CustomSelectTypes) {
   const [selected, setSelected] = useState(options[0]);
 

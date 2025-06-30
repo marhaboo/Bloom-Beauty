@@ -23,7 +23,7 @@ export default function CustomSelect({
           <Listbox.Options className="absolute mt-1 w-full bg-white border border-gray-200 rounded shadow-lg z-10">
             {options.map((option, idx) => (
               <Listbox.Option
-                key={idx}а
+                key={idx}
                 value={option}
                 className={({ active, selected }) =>
                   `cursor-pointer px-4 py-2 text-sm ${

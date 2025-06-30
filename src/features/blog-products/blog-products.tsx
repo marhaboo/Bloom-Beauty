@@ -17,25 +17,25 @@ const BlogProducts = ({
   title,
   info,
   hashtags,
-  property
+  property,
 }: BlogProducts) => {
   return (
-    <div className={`flex gap-5 px-10 bg-[#F9FAFC] ${property} `}>
-      <div className="w-1/2">
+    <div className={`flex flex-col  gap-5 px-10 bg-[#F9FAFC] md:${property} `}>
+      <div className="w-full md:w-1/2">
         <Image src={photoSrc} alt={title} />
       </div>
-      <div className="flex flex-col gap-7 justify-center w-1/2">
+      <div className="flex flex-col gap-7  justify-center w-full md:w-1/2">
         <div>
           <p className="text-[#BFB9CF] text-[16px]">{data}</p>
           <p className="text-[#383838] text-[36px] text font-medium">{title}</p>
         </div>
         <p className="text-[#697586] text-[16px]">{info}</p>
-        <div className="flex  gap-3">
+        <div className="flex flex-wrap  gap-3">
           {hashtags.map((hash, ind) => (
             <HasgtagButton text={hash} key={ind} />
           ))}
         </div>
-        <PrimaryButtton text="Read More" />
+        <PrimaryButtton text="Read More" classname="w-full" />{" "}
       </div>
     </div>
   );

@@ -8,13 +8,12 @@ const ShopAllPage = () => {
     <div className="bg-[#F9FAFC] py-10 px-10 flex flex-col gap-5.5">
       <div className=" flex gap-4.5 ">
         <div className="flex flex-col gap-8">
-
-        <div className="bg-white w-[289px]">
-          <h2 className="font-semibold  p-4  text-[24px] text-[#383838] mb-4">
-            Shop All
-          </h2>
-          <ShopAllOverLay />
-        </div>
+          <div className="bg-white w-[289px]">
+            <h2 className="font-semibold  p-4  text-[24px] text-[#383838] mb-4">
+              Shop All
+            </h2>
+            <ShopAllOverLay />
+          </div>
           <FilterOverlay />
         </div>
         <ShopCards />

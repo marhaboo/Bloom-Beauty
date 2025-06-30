@@ -5,13 +5,17 @@ import { useState } from "react";
 
 type CustomSelectTypes = {
   options: string[];
+  width?: number;
 };
 
-export default function CustomSelect({ options }: CustomSelectTypes) {
+export default function CustomSelect({
+  options,
+  width = 52,
+}: CustomSelectTypes) {
   const [selected, setSelected] = useState(options[0]);
 
   return (
-    <div className="w-52">
+    <div>
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
           <Listbox.Button className="w-full bg-white border border-gray-300 rounded px-4 py-2 flex justify-between items-center">
@@ -21,7 +25,7 @@ export default function CustomSelect({ options }: CustomSelectTypes) {
           <Listbox.Options className="absolute mt-1 w-full bg-white border border-gray-200 rounded shadow-lg z-10">
             {options.map((option, idx) => (
               <Listbox.Option
-                key={idx}
+                key={idx}а
                 value={option}
                 className={({ active, selected }) =>
                   `cursor-pointer px-4 py-2 text-sm ${

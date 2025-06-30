@@ -1,5 +1,6 @@
+"use client";
 import CustomSelect from "@/features/custom-select/custom-select";
-import React from "react";
+import React, { useState } from "react";
 import Clarifying from "./images/img.png";
 import ClayMask from "./images/img copy.png";
 import SilkFeel from "./images/img-1.png";
@@ -9,65 +10,65 @@ import Hyaluronic from "./images/img-1 copy.png";
 import Innisfree from "./images/img-2 copy.png";
 import SoyMask from "./images/img-3 copy.png";
 import ArrivalsCart from "@/features/new-arrivals/newArrivals";
-
-const data = [
-  {
-    imageUrl: CloudJelly,
-    title: "Cloud Jelly",
-    price: "$31",
-    info: "Lightweight hydrating jelly",
-  },
-  {
-    imageUrl: Clarifying,
-    title: "Clarifying Emulsion",
-    price: "$29",
-    info: "Gentle emulsion for daily cleansing",
-  },
-  {
-    imageUrl: ClayMask,
-    title: "Clay Mask 2X",
-    price: "$34",
-    info: "Deep pore-clearing clay mask",
-  },
-  {
-    imageUrl: SilkFeel,
-    title: "Silk Feel Lotion",
-    price: "$27",
-    info: "Smooth texture with silk protein",
-  },
-  {
-    imageUrl: CloudJelly,
-    title: "Cloud Jelly",
-    price: "$31",
-    info: "Lightweight hydrating jelly",
-  },
-  {
-    imageUrl: Innisfree2,
-    title: "Innisfree Green Tea",
-    price: "$25",
-    info: "Refreshing toner with green tea",
-  },
-  {
-    imageUrl: Hyaluronic,
-    title: "Hyaluronic Acid",
-    price: "$38",
-    info: "Boost moisture retention",
-  },
-  {
-    imageUrl: Innisfree,
-    title: "Innisfree Brightening",
-    price: "$30",
-    info: "Vitamin C + Jeju cherry blossom",
-  },
-  {
-    imageUrl: SoyMask,
-    title: "Soy Mask",
-    price: "$36",
-    info: "Fermented soybean bio cellulose mask",
-  },
-];
+import ArrowButton from "@/features/arrow-button/arrow-button";
 
 const ShopCards = () => {
+  const [data, setData] = useState([
+    {
+      imageUrl: CloudJelly,
+      title: "Cloud Jelly",
+      price: "$31",
+      info: "Lightweight hydrating jelly",
+    },
+    {
+      imageUrl: Clarifying,
+      title: "Clarifying Emulsion",
+      price: "$29",
+      info: "Gentle emulsion for daily cleansing",
+    },
+    {
+      imageUrl: ClayMask,
+      title: "Clay Mask 2X",
+      price: "$34",
+      info: "Deep pore-clearing clay mask",
+    },
+    {
+      imageUrl: SilkFeel,
+      title: "Silk Feel Lotion",
+      price: "$27",
+      info: "Smooth texture with silk protein",
+    },
+    {
+      imageUrl: CloudJelly,
+      title: "Cloud Jelly",
+      price: "$31",
+      info: "Lightweight hydrating jelly",
+    },
+    {
+      imageUrl: Innisfree2,
+      title: "Innisfree Green Tea",
+      price: "$25",
+      info: "Refreshing toner with green tea",
+    },
+    {
+      imageUrl: Hyaluronic,
+      title: "Hyaluronic Acid",
+      price: "$38",
+      info: "Boost moisture retention",
+    },
+    {
+      imageUrl: Innisfree,
+      title: "Innisfree Brightening",
+      price: "$30",
+      info: "Vitamin C + Jeju cherry blossom",
+    },
+    {
+      imageUrl: SoyMask,
+      title: "Soy Mask",
+      price: "$36",
+      info: "Fermented soybean bio cellulose mask",
+    },
+  ]);
   return (
     <div className="flex flex-col w-full gap-10 ">
       <div className="flex justify-between w-full ">
@@ -87,9 +88,15 @@ const ShopCards = () => {
             info={item.info}
             price={item.price}
             title={item.title}
-            height={90}
+            height={150}
           />
         ))}
+      </div>
+      <div
+        className="self-center"
+        onClick={() => setData((prev) => [...prev, ...prev])}
+      >
+        <ArrowButton text="Show more" arrow="down" />
       </div>
     </div>
   );

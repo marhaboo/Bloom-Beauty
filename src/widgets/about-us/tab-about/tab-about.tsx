@@ -144,8 +144,7 @@ const TabAbout = ({ tabName }: TabAboutProps) => {
             font-bold 
             text-lg sm:text-xl md:text-2xl lg:text-3xl
             border-b border-[#97a3b0]
-            pb-3 sm:pb-4 md:pb-5 lg:pb-6
-            mb-4 sm:mb-5 md:mb-6 lg:mb-8
+            pb-3 sm:pb-4 md:pb-5 lg:pb-6  
           '>
             {header.title}
           </h1>
@@ -170,7 +169,7 @@ const TabAbout = ({ tabName }: TabAboutProps) => {
                     text-sm sm:text-base md:text-lg
                     flex items-center justify-between 
                     cursor-pointer
-                    hover:bg-gray-50
+          
                     transition-colors duration-200
                   '
                   onClick={() => toggleItem(key)}

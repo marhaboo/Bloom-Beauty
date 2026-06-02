@@ -11,7 +11,7 @@ import ShareCard from "@/widgets/main/share-card/share-card";
 export default function MainPage() {
   return (
     <>
-      <div className="flex flex-col overflow-hidden gap-20 ">
+      <div className="flex flex-col overflow-hidden gap-12 sm:gap-16 md:gap-20 w-full">
         <HeroSection />
         <NewArrivals />
         <BestSellers />

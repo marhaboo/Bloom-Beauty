@@ -1,30 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
-import Image_1 from "./images/Rectangle 47.png";
-import Image_2 from "./images/Rectangle 47-1.png";
-import Image_3 from "./images/Rectangle 47-2.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Icon from "./images/flower.svg";
 import Image from "next/image";
 import BlogCard from "@/features/blog-card/blog-card";
-
-const blogData = [
-  {
-    image: Image_1,
-    title: "Cracking the Coconut Code",
-    info: "Reveal your skin's natural glow with our Lotus Glow Kit. Nourishing body and face creams.",
-  },
-  {
-    image: Image_2,
-    title: "Bloom Beauty Best of 2023",
-    info: "Bloom Beauty Best of 2023 products winners are here.",
-  },
-  {
-    image: Image_3,
-    title: "7 Skincare Habits to Break Now",
-    info: "Great skincare is a long game—it doesn’t happen overnight, but little steps are made (nightly!) to get and keep your skin at its most radiant state.",
-  },
-];
+import Link from "next/link";
+import { blogPosts } from "@/data/blog-posts";
+import { scrollCarouselToIndex } from "@/lib/carousel";
 
 const OnTheBlog = () => {
   const scrollBar = useRef<HTMLDivElement>(null);
@@ -70,31 +52,41 @@ const OnTheBlog = () => {
           className="rotate-90"
         />
       </div>
-      <p className="text-[#697586] text-[18px]">See all</p>
+      <Link href="/blog" className="text-[#697586] text-[18px] hover:text-[#F5A3B7]">
+        See all
+      </Link>
       <div className="relative w-full max-w-[1200px]">
-        <button className="flex justify-center scrollbar-hidden items-center scroll-smooth overflow-x-hidden bg-[#DEDAE5] rounded-full h-8 w-8 absolute opacity-65 top-1/2 md:left-0 left-3 translate-y-1/2   ">
-          <ChevronLeft onClick={leftScroll} className="text-white" />
+        <button
+          type="button"
+          onClick={leftScroll}
+          aria-label="Scroll blog posts left"
+          className="flex justify-center scrollbar-hidden items-center scroll-smooth overflow-x-hidden bg-[#DEDAE5] rounded-full h-8 w-8 absolute opacity-65 top-1/2 md:left-0 left-3 translate-y-1/2   "
+        >
+          <ChevronLeft className="text-white" />
         </button>
         <div
           ref={scrollBar}
           onScroll={handleScroll}
           className="overflow-x-auto scrollbar-hidden flex pr-3 my-10 gap-2 n scroll-smooth px-10 "
         >
-          {[...blogData, ...blogData].map((data, index) => (
+          {[...blogPosts, ...blogPosts].map((data, index) => (
             <div
-              key={index}
+              key={`${data.slug}-${index}`}
               className="inline-block no-scrollbar  mr-4 min-w-[392px]"
             >
               <BlogCard
-                imageUrl={data.image}
+                imageUrl={data.photoSrc}
                 title={data.title}
-                info={data.info}
+                info={data.excerpt}
+                href={`/blog/${data.slug}`}
               />
             </div>
           ))}
         </div>
         <button
+          type="button"
           onClick={rightScroll}
+          aria-label="Scroll blog posts right"
           className="  md:right-0  bg-[#DEDAE5] flex justify-center items-center opacity-65 rounded-full h-8 w-8 top-1/2 absolute right-6 translate-y-1/2 "
         >
           <ChevronRight className="text-white" />
@@ -103,7 +95,13 @@ const OnTheBlog = () => {
       <div className="flex gap-2">
         {[0, 1].map((i) => (
           <button
+            type="button"
             key={i}
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => {
+              scrollCarouselToIndex(scrollBar.current, i, 392);
+              setActiveIndex(i);
+            }}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
               activeIndex === i ? "bg-[#383838]" : "bg-[#DFE1E3]"
             }`}

@@ -1,15 +1,39 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TabAbout from '../tab-about/tab-about'
+import { useRouter, useSearchParams } from 'next/navigation'
+
+type TabKey = "sh-returns" | "about-us" | "contact-us" | "faqs"
+
+const isValidTab = (value: string | null): value is TabKey =>
+  value === "sh-returns" ||
+  value === "about-us" ||
+  value === "contact-us" ||
+  value === "faqs"
 
 const NavAbout = () => {
-  const [tabName, setTabName] = useState<"sh-returns" | "about-us" | "contact-us" | "faqs">("sh-returns")
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const tabParam = searchParams?.get("tab") ?? null
+  const initialTab: TabKey = isValidTab(tabParam) ? tabParam : "about-us"
+  const [tabName, setTabName] = useState<TabKey>(initialTab)
+
+  useEffect(() => {
+    if (isValidTab(tabParam)) {
+      setTabName(tabParam)
+    }
+  }, [tabParam])
+
+  const selectTab = (key: TabKey) => {
+    setTabName(key)
+    router.replace(`/about-us?tab=${key}`, { scroll: false })
+  }
 
   const navItems = [
-    { key: "about-us", label: "About us" },
-    { key: "sh-returns", label: "Shipping Returns" },
-    { key: "contact-us", label: "Contact us" },
-    { key: "faqs", label: "FAQs" }
+    { key: "about-us" as const, label: "About us" },
+    { key: "sh-returns" as const, label: "Shipping Returns" },
+    { key: "contact-us" as const, label: "Contact us" },
+    { key: "faqs" as const, label: "FAQs" }
   ] as const
 
   return (
@@ -45,7 +69,7 @@ const NavAbout = () => {
                   : "text-black hover:text-[#F5A3B7] hover:bg-pink-50"
                 }
               `}
-              onClick={() => setTabName(item.key)}
+              onClick={() => selectTab(item.key)}
             >
               {item.label}
             </button>
@@ -79,7 +103,7 @@ const NavAbout = () => {
                 : "text-black hover:text-[#F5A3B7] hover:bg-pink-50 hover:border-l-4 hover:border-pink-200"
               }
             `}
-            onClick={() => setTabName(item.key)}
+            onClick={() => selectTab(item.key)}
           >
             {item.label}
           </button>

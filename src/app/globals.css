@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 .rating_item {
   cursor: pointer;
   font-size: 18px;
@@ -17,14 +25,38 @@
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
-  display: none;           
+  display: none;
 }
 
 .scrollbar-hidden {
-  -ms-overflow-style: none;  
-  scrollbar-width: none;     
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .main-color {
-  color: #F5A3B7
+  color: #F5A3B7;
+}
+
+/* Shared page shell */
+.page-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .page-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }

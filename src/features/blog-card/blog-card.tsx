@@ -1,5 +1,6 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import PrimaryButtton from "../primary-buttton/primary-buttton";
 import { Heart } from "lucide-react";
@@ -8,9 +9,10 @@ type ArrivalsType = {
   imageUrl: StaticImageData;
   title: string;
   info: string;
+  href?: string;
 };
 
-const BlogCard = ({ imageUrl, title, info }: ArrivalsType) => {
+const BlogCard = ({ imageUrl, title, info, href }: ArrivalsType) => {
   const [isHover, setHover] = useState(false);
   const [isLiked, setLiked] = useState(false);
 
@@ -24,7 +26,7 @@ const BlogCard = ({ imageUrl, title, info }: ArrivalsType) => {
     >
       {isHover && (
         <Heart
-          className={`absolute right-5 hover:stroke-[#F5A3B7] hover:fill-[#F5A3B7] top-3 cursor-pointer transition-all duration-200 ${
+          className={`absolute right-5 hover:stroke-[#F5A3B7] hover:fill-[#F5A3B7] top-3 cursor-pointer transition-all duration-200 z-10 ${
             isLiked
               ? "stroke-[#F5A3B7] fill-[#F5A3B7]"
               : "stroke-[#BFB9CF] fill-transparent"
@@ -32,24 +34,43 @@ const BlogCard = ({ imageUrl, title, info }: ArrivalsType) => {
           onClick={() => setLiked(!isLiked)}
         />
       )}
-      <Image
-        src={imageUrl}
-        alt={title}
-        className="w-full h-auto object-cover"
-      />
+      {href ? (
+        <Link href={href}>
+          <Image
+            src={imageUrl}
+            alt={title}
+            className="w-full h-auto object-cover"
+          />
+        </Link>
+      ) : (
+        <Image
+          src={imageUrl}
+          alt={title}
+          className="w-full h-auto object-cover"
+        />
+      )}
       <div className="flex flex-col px-5 py-3 gap-1.5">
         <div className="flex flex-col gap-1.5 ">
-          <p
-            className={`font-medium text-xl ${isHover ? "text-[#F5A3B7]" : ""}`}
-          >
-            {title}
-          </p>
+          {href ? (
+            <Link
+              href={href}
+              className={`font-medium text-xl ${isHover ? "text-[#F5A3B7]" : ""}`}
+            >
+              {title}
+            </Link>
+          ) : (
+            <p
+              className={`font-medium text-xl ${isHover ? "text-[#F5A3B7]" : ""}`}
+            >
+              {title}
+            </p>
+          )}
 
           <p className="text-[#697586] h-[81px]  line-clamp-3 md:line-clamp-4 text-[16px]">
             {info}
           </p>
         </div>
-        <PrimaryButtton text="Read More" />
+        <PrimaryButtton text="Read More" href={href} />
       </div>
     </div>
   );

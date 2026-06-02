@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import PinteresIcon from "./images/Vector-1.svg";
 import TwitterIcon from "./images/Vector-2.svg";
 import FacebookIcon from "./images/Vector.svg";
@@ -8,7 +9,22 @@ import TelegramIcon from "./images/Vector-4.svg";
 import logo from "../../../../public/Bloom Beauty_2.svg";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import { SOCIAL_LINKS } from "@/lib/navigation";
+
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [subscribeMessage, setSubscribeMessage] = useState("");
+
+  const handleSubscribe = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!email.trim()) {
+      setSubscribeMessage("Please enter your email address.");
+      return;
+    }
+    setSubscribeMessage("Thank you for subscribing! (Demo)");
+    setEmail("");
+  };
+
   return (
     <div className="flex flex-col  ">
       <div
@@ -19,45 +35,75 @@ const Footer = () => {
         }}
       >
         <div className="flex  justify-between md:justify-center gap-5 pt-10 ">
-          <Image src={FacebookIcon} alt="FacebookIcon" />
-          <Image src={PinteresIcon} alt="PinteresIcon" />
-          <Image src={TwitterIcon} alt="TwitterIcon" />
-          <Image src={InstagramIcon} alt="InstagramIcon" />
-          <Image src={TelegramIcon} alt="TelegramIcon" />
+          <Link href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <Image src={FacebookIcon} alt="FacebookIcon" />
+          </Link>
+          <Link href={SOCIAL_LINKS.pinterest} target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <Image src={PinteresIcon} alt="PinteresIcon" />
+          </Link>
+          <Link href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <Image src={TwitterIcon} alt="TwitterIcon" />
+          </Link>
+          <Link href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <Image src={InstagramIcon} alt="InstagramIcon" />
+          </Link>
+          <Link href={SOCIAL_LINKS.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <Image src={TelegramIcon} alt="TelegramIcon" />
+          </Link>
         </div>
         <div className="text-white flex-col md:flex-row flex justify-between gap-5 md:gap-0  py-10   text-[14px] ">
           <div className="flex flex-col md:w-[176px] gap-3 ">
-            <Image src={logo} alt="Bloom Beauty Logo" />
+            <Link href="/">
+              <Image src={logo} alt="Bloom Beauty Logo" />
+            </Link>
             <div className="flex flex-col gap-1">
               <p className="md:text-[12px] text-[14px] font-normal">
                 Discover nature&apos;s beauty with our natural care products.
               </p>
               <div className="flex gap-2 items-center">
                 <Phone className="text-[#F5A3B7] w-[14px] h-[14px] font-normal" />
-                <p>+ 38 050 123 45 67</p>
+                <a href="tel:+380501234567" className="hover:text-[#F5A3B7]">
+                  + 38 050 123 45 67
+                </a>
               </div>
               <div className="flex gap-2 items-center">
                 <Mail className="text-[#F5A3B7] w-[14px] h-[14px] font-normal" />
-                <p>bloombt@kmail.com </p>
+                <a href="mailto:bloombt@kmail.com" className="hover:text-[#F5A3B7]">
+                  bloombt@kmail.com{" "}
+                </a>
               </div>
               <div className="flex gap-2 items-center">
                 <MapPin className="text-[#F5A3B7] w-[14px] h-[14px] font-normal" />
-                <p>Kiyv, Ukraine </p>
+                <Link href="/about-us?tab=contact-us" className="hover:text-[#F5A3B7]">
+                  Kiyv, Ukraine{" "}
+                </Link>
               </div>
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-10">
             <div className="flex flex-col gap-2">
               <p className="text-[#BFB9CF] text">HELP</p>
-              <p>Contact us</p>
-              <p>FAQ</p>
-              <p>Shipping & Returns</p>
+              <p>
+                <Link href={"/about-us?tab=contact-us"}>Contact us</Link>
+              </p>
+              <p>
+                <Link href={"/about-us?tab=faqs"}>FAQ</Link>
+              </p>
+              <p>
+                <Link href={"/about-us?tab=sh-returns"}>Shipping & Returns</Link>
+              </p>
             </div>
             <div className="flex flex-col gap-2">
               <p className="text-[#BFB9CF] text">MY ACCOUNT</p>
-              <p>Addresses</p>
-              <p>Order Status</p>
-              <p>Wishlist</p>
+              <p>
+                <Link href={"/account?tab=addresses"}>Addresses</Link>
+              </p>
+              <p>
+                <Link href={"/account?tab=orders"}>Order Status</Link>
+              </p>
+              <p>
+                <Link href={"/account?tab=wishlist"}>Wishlist</Link>
+              </p>
             </div>
             <div className="flex flex-col gap-2">
               <p className="text-[#BFB9CF] text">CUSTOMER CARE</p>
@@ -69,24 +115,33 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center md:items-start gap-1">
+          <form
+            className="flex flex-col items-center md:items-start gap-1"
+            onSubmit={handleSubscribe}
+          >
             <p>SIGN UP FOR EMAILS</p>
             <p className="text-[12px] font-normal">
               Stay informed, subscribe to our newsletter now!
             </p>
             <input
-              type="text"
+              type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="p-2 text-[#BFB9CF] w-full md:w-auto rounded bg-white"
-              name=""
-              id=""
+              name="email"
+              id="footer-email"
             />
             <button
-              className={`text-white  font-medium hover:cursor-pointer text-sm self-start py-[10px] `}
+              type="submit"
+              className={`text-white  font-medium hover:cursor-pointer text-sm self-start py-[10px] hover:text-[#F5A3B7]`}
             >
               Subscribe →
             </button>
-          </div>
+            {subscribeMessage && (
+              <p className="text-[12px] text-[#F5A3B7]">{subscribeMessage}</p>
+            )}
+          </form>
         </div>
       </div>
       <div
@@ -98,8 +153,12 @@ const Footer = () => {
       >
         <p>© 2023 Bloom Beauty </p>
         <div className="flex gap-3">
-          <p>Privacy Policy</p>
-          <p>Terms and conditions</p>
+          <p>
+            <Link href={"/privacy-policy"}>Privacy Policy</Link>
+          </p>
+          <p>
+            <Link href={"/terms"}>Terms and conditions</Link>
+          </p>
         </div>
       </div>
     </div>

@@ -11,6 +11,9 @@ import Icon from "./images/flower.svg";
 import Image from "next/image";
 import Button from "@/features/base-button/Button";
 import { Instagram } from "lucide-react";
+import Link from "next/link";
+import { SOCIAL_LINKS } from "@/lib/navigation";
+
 const ShareCard = () => {
   return (
     <div className="flex flex-col items-center justify-center pb-20">
@@ -34,7 +37,12 @@ const ShareCard = () => {
           className="rotate-90"
         />
       </div>
-      <p className="text-[#697586] hidden md:block  text-[18px]">See all</p>
+      <Link
+        href="/blog?tag=BLOOMBEAUTY"
+        className="text-[#697586] hidden md:block text-[18px] hover:text-[#F5A3B7]"
+      >
+        See all
+      </Link>
       <div className="relative w-full ">
         <div className="flex mt-10 mb-5 gap-1 flex-wrap justify-center  ">
           {[
@@ -57,19 +65,21 @@ const ShareCard = () => {
                 alt="Beauty Kit"
               />
               <div className="flex flex-col opacity-0 group-hover:opacity-100 absolute top-40 left-15 gap-3">
-                <div
-                  className="flex  text-white bg-[#A5A5A5] hover:opacity-100 opacity-70 p-2 rounded-sm cursor-pointer
-                 gap-2 justify-center "
+                <Link
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex  text-white bg-[#A5A5A5] hover:opacity-100 opacity-70 p-2 rounded-sm cursor-pointer gap-2 justify-center"
                 >
-                  <button>See in </button> <Instagram />
-                </div>
-                <Button text={"Buy Now"} />
+                  <span>See in </span> <Instagram />
+                </Link>
+                <Button text={"Buy Now"} href="/shop-all" />
               </div>
             </div>
           ))}
         </div>
       </div>
-      <Button text={"Follow us"} />
+      <Button text={"Follow us"} href={SOCIAL_LINKS.instagram} />
     </div>
   );
 };

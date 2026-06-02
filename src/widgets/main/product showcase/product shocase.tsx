@@ -1,6 +1,7 @@
 import ArrowButton from "@/features/arrow-button/arrow-button";
 import Button from "@/features/base-button/Button";
 import HasgtagButton from "@/features/hashtag-button/hasgtagButton";
+import { blogTagHref } from "@/lib/navigation";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 
@@ -29,15 +30,15 @@ const ProductShowcase = ({
         <h2 className="md:text-[36px] text-[32px] font-medium ">{title}</h2>
         <p className="text-[#697586] text-[16px]">{text}</p>
         <div className="flex gap-1 flex-wrap">
-          <HasgtagButton text="GreatGift" />
-          <HasgtagButton text="AntiAging" />
-          <HasgtagButton text="GreatGift" />
-          <HasgtagButton text="Ingredients" />
-          <HasgtagButton text="Ingredients" />
+          <HasgtagButton text="GreatGift" href={blogTagHref("GreatGift")} />
+          <HasgtagButton text="AntiAging" href={blogTagHref("AntiAging")} />
+          <HasgtagButton text="GreatGift" href={blogTagHref("GreatGift")} />
+          <HasgtagButton text="Ingredients" href={blogTagHref("Ingredients")} />
+          <HasgtagButton text="Ingredients" href={blogTagHref("Ingredients")} />
         </div>
         <div className="w-full md:w-auto flex flex-col gap-4 md:flex-row">
-          <Button text={"Shop Now"} property="w-full md:w-auto" />
-          <ArrowButton text={"Explore More"} property="w-full md:w-auto" />
+          <Button text={"Shop Now"} property="w-full md:w-auto" href="/shop-all" />
+          <ArrowButton text={"Explore More"} property="w-full md:w-auto" href="/collection" />
         </div>
       </div>
       <Image width={598} height={500} className="self-center" src={imageUrl} alt={title} />

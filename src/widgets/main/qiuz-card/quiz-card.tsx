@@ -24,7 +24,7 @@ const QuizCard = () => {
             Meet the quiz that will curate a routine just just just as unique as
             you are.
           </p>
-          <Button property="w-full px-5" text={"Explore More"} />
+          <Button property="w-full px-5" text={"Explore More"} href="/shop-all" />
         </div>
       </div>
     </>

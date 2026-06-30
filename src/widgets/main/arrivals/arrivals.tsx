@@ -1,7 +1,7 @@
 "use client";
 import ArrivalsCart from "@/features/new-arrivals/newArrivals";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { products } from "@/data/products";
 import Image_1 from "./images/img.png";
 import Image_2 from "./images/img-1.png";

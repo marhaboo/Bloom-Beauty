@@ -35,6 +35,7 @@ const ArrowButton = ({
     );
   }
 
+
   return (
     <button type="button" className={className} onClick={onClick}>
       {text} <span className="text-[18px]"> {arrowSymbol}</span>

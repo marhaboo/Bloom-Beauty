@@ -41,11 +41,11 @@ const Products = ({ activeCategories }: ProductsProps) => {
   const postsToRender = expanded ? filteredPosts : paginatedPosts;
 
   return (
-    <section className="w-full bg-[#F9FAFC] py-10 sm:py-14 md:py-16">
+    <section className="w-full bg-[#fbf8f2] py-10 sm:py-14 md:py-16">
       <div className="page-container flex flex-col gap-8 sm:gap-10 md:gap-12">
         {postsToRender.length === 0 ? (
-          <div className="text-center py-16 px-4 bg-white rounded-2xl border border-[#DFE1E3]/70">
-            <p className="text-[#697586] text-base">
+          <div className="rounded-[2rem] border border-[#e9e3dc] bg-white/70 px-4 py-16 text-center">
+            <p className="text-base text-[#707970]">
               No posts found for this category. Try another filter.
             </p>
           </div>

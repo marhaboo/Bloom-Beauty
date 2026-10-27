@@ -14,7 +14,7 @@ const SearchPageContent = () => {
   }, [searchParams]);
 
   return (
-    <div className="w-full min-h-screen bg-[#F9FAFC]">
+    <div className="min-h-screen w-full bg-[#fbf8f2]">
       <SearchHero
         initialQuery={initialQuery}
         onSearch={setActiveQuery}
@@ -32,7 +32,7 @@ const SearchPage = () => {
   return (
     <Suspense
       fallback={
-        <div className="bg-[#F9FAFC] min-h-[50vh] flex items-center justify-center text-[#697586]">
+        <div className="flex min-h-[50vh] items-center justify-center bg-[#fbf8f2] text-[#707970]">
           Loading search...
         </div>
       }

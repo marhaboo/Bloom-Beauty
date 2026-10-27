@@ -1,7 +1,8 @@
 "use client";
+
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import PrimaryButtton from "../primary-buttton/primary-buttton";
 import { Heart } from "lucide-react";
 
@@ -19,93 +20,75 @@ const ArrivalsCart = ({
   title,
   info,
   price,
-  height = 200,
+  height,
   href,
 }: ArrivalsType) => {
-  const [rating, setRating] = useState(0);
-  const [isHover, setHover] = useState(false);
   const [isLiked, setLiked] = useState(false);
 
-  const imageBlock = (
+  const image = (
     <Image
       src={imageUrl}
       alt={title}
-      className="w-full h-auto object-cover"
+      className="aspect-square w-full rounded-[1.25rem] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] sm:rounded-[1.5rem]"
     />
   );
 
   return (
-    <div
-      className={`flex flex-col relative text-[#383838] transition-all duration-300
-        w-full max-w-[250px] md:max-w-[392px]
-      `}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      {isHover && (
-        <Heart
-          className={`absolute right-5 hover:stroke-[#F5A3B7] hover:fill-[#F5A3B7] top-3 cursor-pointer transition-all duration-200 z-10 ${
-            isLiked
-              ? "stroke-[#F5A3B7] fill-[#F5A3B7]"
-              : "stroke-[#BFB9CF] fill-transparent"
-          }`}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setLiked(!isLiked);
-          }}
-        />
-      )}
-      {href ? (
-        <Link href={href} className="block">
-          {imageBlock}
-        </Link>
-      ) : (
-        imageBlock
-      )}
-      <div className="flex flex-col px-5 py-3 gap-1.5">
-        <div
-          className={`flex flex-col gap-1.5  `}
-          style={{ height: `${height}px` }}
+    <div className="group flex h-full flex-col text-[#29352f]">
+      <div className="relative overflow-hidden rounded-[1.25rem] bg-[#f7ebe6] sm:rounded-[1.5rem]">
+        {href ? (
+          <Link href={href} aria-label={`View ${title}`}>
+            {image}
+          </Link>
+        ) : (
+          image
+        )}
+        <button
+          type="button"
+          aria-label={isLiked ? `Remove ${title} from wishlist` : `Add ${title} to wishlist`}
+          aria-pressed={isLiked}
+          onClick={() => setLiked((liked) => !liked)}
+          className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-[#fffdf9]/70 text-[#526258] shadow-sm backdrop-blur-md transition hover:scale-105 hover:text-[#a36e69]"
         >
+          <Heart
+            className={`h-4 w-4 ${isLiked ? "fill-[#a36e69] text-[#a36e69]" : ""}`}
+            strokeWidth={1.6}
+          />
+        </button>
+      </div>
+
+      <div
+        className="flex flex-1 flex-col px-1 pt-3"
+        style={height ? { minHeight: `${height}px` } : undefined}
+      >
+        <div className="flex items-start justify-between gap-3">
           {href ? (
             <Link
               href={href}
-              className={`font-medium ${isHover ? "text-[#F5A3B7]" : ""}`}
+              className="text-sm font-medium transition-colors hover:text-[#a36e69] sm:text-base"
             >
               {title}
             </Link>
           ) : (
-            <p className={`font-medium ${isHover ? "text-[#F5A3B7]" : ""}`}>
-              {title}
-            </p>
+            <p className="text-sm font-medium sm:text-base">{title}</p>
           )}
-
-          <div className="rating flex gap-1 self-start">
-            <span className="text-[#697586]">({rating})</span>
-            {[5, 4, 3, 2, 1].map((value) => (
-              <span
-                key={value}
-                onClick={() => setRating(value)}
-                className={`text-xl cursor-pointer rating_item ${
-                  value <= rating ? "text-[#ffa500]" : "text-[#DFE1E3]"
-                }`}
-              >
-                ★
-              </span>
-            ))}
-          </div>
-
-          <p className="text-[#697586] text-sm">{info}</p>
-          <p>{price}</p>
+          <p className="shrink-0 text-sm font-semibold">{price}</p>
         </div>
-        {href ? (
-          <Link href={href}>
-            <PrimaryButtton text="Add to bag" />
-          </Link>
-        ) : (
-          <PrimaryButtton text="Add to bag" />
-        )}
+
+        <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-5 text-[#66756d]">
+          {info}
+        </p>
+        <div className="mt-3">
+          {href ? (
+            <PrimaryButtton
+              href={href}
+              text="View details"
+              classname="!max-w-none !rounded-full !border-[#d7d0c7] !bg-white/55 !py-2.5 !text-[10px] !font-medium !uppercase !tracking-[0.12em] !text-[#29352f] !backdrop-blur-md !transition-all hover:!border-[#20372e] hover:!bg-[#20372e] hover:!text-white sm:!py-3 sm:!text-xs"
+            />
+          ) : (
+            <PrimaryButtton text="View details" />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -31,36 +31,36 @@ const SearchHero = ({
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-[#F5E0E5] via-[#FAF0F3] to-[#F9FAFC] pt-10 pb-12 md:pt-14 md:pb-16 px-4 sm:px-6">
-      <div className="max-w-3xl mx-auto text-center flex flex-col items-center gap-3 md:gap-4">
-        <p className="text-[#F5A3B7] text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase">
+    <section className="w-full bg-[radial-gradient(ellipse_at_top,#f5e8e4_0%,#fbf8f2_62%,#fbf8f2_100%)] px-5 pb-12 pt-12 sm:px-8 sm:pb-16 sm:pt-16">
+      <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center md:gap-4">
+        <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#a36e69] sm:text-xs">
           Bloom Beauty
         </p>
-        <h1 className="text-[#383838] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+        <h1 className="font-serif text-4xl leading-tight tracking-[-0.03em] text-[#20372e] sm:text-5xl md:text-6xl">
           Search
         </h1>
-        <p className="text-[#697586] text-sm sm:text-base max-w-lg">{subtitle}</p>
+        <p className="max-w-lg text-sm leading-6 text-[#707970] sm:text-base">{subtitle}</p>
 
         <form
           onSubmit={handleSubmit}
-          className="mt-4 md:mt-6 w-full max-w-2xl"
+          className="mt-4 w-full max-w-2xl md:mt-6"
           role="search"
         >
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-0 bg-white rounded-2xl sm:rounded-full shadow-[0_8px_30px_rgba(56,56,56,0.08)] border border-[#DFE1E3]/80 p-2 sm:pl-6 sm:pr-2 sm:py-2">
-            <div className="flex flex-1 items-center gap-3 px-3 sm:px-0 py-2 sm:py-0">
-              <Search className="text-[#F5A3B7] w-5 h-5 shrink-0" aria-hidden />
+          <div className="flex flex-col items-stretch gap-2 rounded-[1.5rem] border border-white/80 bg-white/70 p-2 shadow-[0_18px_50px_-28px_rgba(32,55,46,0.3)] backdrop-blur-xl sm:flex-row sm:items-center sm:rounded-full sm:pl-6 sm:pr-2">
+            <div className="flex flex-1 items-center gap-3 px-3 py-2 sm:px-0 sm:py-0">
+              <Search className="h-5 w-5 shrink-0 text-[#a36e69]" aria-hidden />
               <input
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search products, ingredients, categories..."
-                className="flex-1 min-w-0 text-[#383838] placeholder:text-[#BFB9CF] outline-none text-sm sm:text-base bg-transparent"
+                className="min-w-0 flex-1 bg-transparent text-sm text-[#20372e] outline-none placeholder:text-[#a7aaa2] sm:text-base"
                 aria-label="Search products"
               />
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto shrink-0 text-white bg-[#F5A3B7] hover:bg-[#323232] transition-colors text-sm font-medium px-8 py-3 sm:py-2.5 rounded-xl sm:rounded-full"
+              className="min-h-11 w-full shrink-0 rounded-full bg-[#20372e] px-8 py-3 text-sm font-medium text-white transition duration-300 hover:bg-[#a36e69] sm:w-auto sm:py-2.5"
             >
               Search
             </button>

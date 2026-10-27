@@ -30,7 +30,7 @@ const BlogProducts = ({
   return (
     <article className="w-full">
       <div
-        className={`bg-white rounded-2xl overflow-hidden border border-[#DFE1E3]/70 shadow-[0_4px_24px_rgba(56,56,56,0.06)] flex flex-col ${
+        className={`flex flex-col overflow-hidden rounded-[2rem] border border-[#e9e3dc] bg-white/75 shadow-[0_24px_70px_-52px_rgba(32,55,46,0.35)] backdrop-blur-md ${
           reversed ? "md:flex-row-reverse" : "md:flex-row"
         }`}
       >
@@ -46,21 +46,23 @@ const BlogProducts = ({
 
         <div className="flex flex-col justify-center gap-4 sm:gap-5 md:gap-6 p-6 sm:p-8 md:p-10 md:w-[52%]">
           <div className="flex flex-col gap-2">
-            <time className="text-[#BFB9CF] text-sm font-medium">{data}</time>
+            <time className="text-xs font-medium uppercase tracking-[0.12em] text-[#a36e69]">
+              {data}
+            </time>
             {readMoreHref ? (
               <Link href={readMoreHref}>
-                <h2 className="text-[#383838] text-2xl sm:text-3xl lg:text-4xl font-medium leading-snug hover:text-[#F5A3B7] transition-colors">
+                <h2 className="font-serif text-2xl font-medium leading-snug text-[#20372e] transition-colors hover:text-[#a36e69] sm:text-3xl lg:text-4xl">
                   {title}
                 </h2>
               </Link>
             ) : (
-              <h2 className="text-[#383838] text-2xl sm:text-3xl lg:text-4xl font-medium leading-snug">
+              <h2 className="font-serif text-2xl font-medium leading-snug text-[#20372e] sm:text-3xl lg:text-4xl">
                 {title}
               </h2>
             )}
           </div>
 
-          <p className="text-[#697586] text-sm sm:text-base leading-relaxed line-clamp-6 md:line-clamp-none">
+          <p className="line-clamp-6 text-sm leading-7 text-[#707970] sm:text-base md:line-clamp-none">
             {info}
           </p>
 

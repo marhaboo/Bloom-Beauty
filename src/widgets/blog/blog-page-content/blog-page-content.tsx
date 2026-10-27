@@ -18,17 +18,16 @@ const BlogPageContentInner = () => {
   }, [tagFromUrl]);
 
   return (
-    <div className="w-full min-h-screen bg-[#F9FAFC]">
-      {/* Blog hero */}
-      <header className="w-full bg-gradient-to-b from-[#F5E0E5] to-[#F9FAFC] pt-10 pb-8 sm:pt-14 sm:pb-10 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-[#F5A3B7] text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-2">
+    <main className="min-h-screen w-full bg-[#fbf8f2]">
+      <header className="w-full bg-[radial-gradient(ellipse_at_top,#f5e8e4_0%,#fbf8f2_75%)] px-5 pb-10 pt-12 sm:px-8 sm:pb-14 sm:pt-16">
+        <div className="mx-auto max-w-7xl text-center">
+          <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.22em] text-[#a36e69] sm:text-xs">
             Bloom Beauty Journal
           </p>
-          <h1 className="text-[#383838] text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
-            Blog
+          <h1 className="mb-3 font-serif text-4xl tracking-[-0.03em] text-[#20372e] sm:text-5xl md:text-6xl">
+            Notes for your ritual
           </h1>
-          <p className="text-[#697586] text-sm sm:text-base max-w-xl mx-auto">
+          <p className="mx-auto max-w-xl text-sm leading-6 text-[#707970] sm:text-base">
             Tips, ingredients, and skincare stories to help your natural glow
             bloom.
           </p>
@@ -41,7 +40,7 @@ const BlogPageContentInner = () => {
       />
 
       <Products activeCategories={activeCategories} />
-    </div>
+    </main>
   );
 };
 
@@ -49,7 +48,7 @@ const BlogPageContent = () => {
   return (
     <Suspense
       fallback={
-        <div className="bg-[#F9FAFC] min-h-[50vh] flex items-center justify-center text-[#697586]">
+        <div className="flex min-h-[50vh] items-center justify-center bg-[#fbf8f2] text-[#707970]">
           Loading blog...
         </div>
       }

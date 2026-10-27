@@ -33,41 +33,46 @@ const CartPage = () => {
   };
 
   return (
-    <div className="bg-[#F9FAFC] min-h-screen py-10 px-4 md:px-10">
-      <h1 className="text-[#383838] text-2xl font-bold mb-8">Your Cart</h1>
+    <main className="min-h-[65vh] bg-[#fbf8f2] px-5 py-10 sm:px-8 sm:py-14 lg:px-12">
+      <div className="mx-auto max-w-[1280px]">
+      <div className="mb-8">
+        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#a36e69]">Your little rituals</p>
+        <h1 className="mt-2 font-serif text-4xl text-[#20372e]">Shopping bag</h1>
+      </div>
 
       {lines.length === 0 ? (
-        <div className="bg-white rounded-xl p-10 text-center flex flex-col gap-4 items-center">
-          <p className="text-[#697586]">Your cart is empty.</p>
+        <div className="flex flex-col items-center gap-4 rounded-[2rem] border border-[#e9e3dc] bg-white/70 p-10 text-center backdrop-blur-md">
+          <p className="text-[#707970]">Your shopping bag is waiting for something lovely.</p>
           <Button text="Continue Shopping" href="/shop-all" />
         </div>
       ) : (
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1 flex flex-col gap-4">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
+          <div className="flex flex-1 flex-col gap-4">
             {lines.map((line) => (
               <div
                 key={line.productSlug}
-                className="bg-white rounded-xl p-4 flex gap-4 items-center"
+                className="flex items-center gap-4 rounded-[1.5rem] border border-[#e9e3dc] bg-white/75 p-4 backdrop-blur-md sm:gap-6 sm:p-5"
               >
                 <Image
                   src={line.product.imageUrl}
                   alt={line.product.title}
-                  className="w-24 h-24 object-cover rounded"
+                  className="h-20 w-20 rounded-[1rem] object-cover sm:h-28 sm:w-28 sm:rounded-[1.25rem]"
                 />
-                <div className="flex-1 flex flex-col gap-2">
+                <div className="flex min-w-0 flex-1 flex-col gap-2">
                   <Link
                     href={`/product/${line.product.slug}`}
-                    className="font-medium hover:text-[#F5A3B7]"
+                    className="font-medium text-[#20372e] transition-colors hover:text-[#a36e69]"
                   >
                     {line.product.title}
                   </Link>
-                  <p className="text-sm text-[#697586]">{line.product.info}</p>
-                  <p className="font-medium">{line.product.price}</p>
-                  <div className="flex items-center gap-3">
+                  <p className="text-xs text-[#707970] sm:text-sm">{line.product.info}</p>
+                  <p className="text-sm font-semibold text-[#20372e]">{line.product.price}</p>
+                  <div className="flex flex-wrap items-center gap-3">
                     <button
                       type="button"
                       onClick={() => updateQuantity(line.productSlug, -1)}
-                      className="border border-[#DFE1E3] w-8 h-8 rounded"
+                      aria-label={`Decrease ${line.product.title} quantity`}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e9e3dc] transition hover:bg-[#f5e8e4]"
                     >
                       −
                     </button>
@@ -75,14 +80,15 @@ const CartPage = () => {
                     <button
                       type="button"
                       onClick={() => updateQuantity(line.productSlug, 1)}
-                      className="border border-[#DFE1E3] w-8 h-8 rounded"
+                      aria-label={`Increase ${line.product.title} quantity`}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e9e3dc] transition hover:bg-[#f5e8e4]"
                     >
                       +
                     </button>
                     <button
                       type="button"
                       onClick={() => removeItem(line.productSlug)}
-                      className="text-sm text-[#697586] ml-2 hover:text-[#F5A3B7]"
+                      className="ml-1 text-xs text-[#707970] transition-colors hover:text-[#a36e69]"
                     >
                       Remove
                     </button>
@@ -92,31 +98,32 @@ const CartPage = () => {
             ))}
           </div>
 
-          <aside className="bg-white rounded-xl p-6 h-fit w-full lg:w-80 flex flex-col gap-4">
-            <h2 className="font-semibold text-lg">Order Summary</h2>
-            <div className="flex justify-between text-[#697586]">
+          <aside className="flex h-fit w-full flex-col gap-4 rounded-[1.5rem] border border-[#e9e3dc] bg-white/75 p-6 backdrop-blur-md lg:sticky lg:top-28 lg:w-[340px]">
+            <h2 className="font-serif text-2xl text-[#20372e]">Order summary</h2>
+            <div className="flex justify-between text-sm text-[#707970]">
               <span>Subtotal</span>
               <span>{subtotal}</span>
             </div>
-            <div className="flex justify-between text-[#697586]">
+            <div className="flex justify-between gap-3 text-sm text-[#707970]">
               <span>Shipping</span>
-              <span>Calculated at checkout</span>
+              <span className="text-right">Calculated at checkout</span>
             </div>
-            <div className="flex justify-between font-medium border-t border-[#DFE1E3] pt-4">
+            <div className="flex justify-between border-t border-[#e9e3dc] pt-4 font-medium">
               <span>Total</span>
               <span>{subtotal}</span>
             </div>
-            <PrimaryButtton text="Checkout" classname="w-full" href="/checkout" />
+            <PrimaryButtton text="Continue to checkout" classname="!max-w-none" href="/checkout" />
             <Link
               href="/shop-all"
-              className="text-center text-sm text-[#F5A3B7] hover:underline"
+              className="text-center text-sm text-[#707970] transition-colors hover:text-[#a36e69]"
             >
               Continue shopping
             </Link>
           </aside>
         </div>
       )}
-    </div>
+      </div>
+    </main>
   );
 };
 

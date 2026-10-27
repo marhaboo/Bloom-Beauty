@@ -7,7 +7,6 @@ import Image_5 from "./images/inst shots-1.png";
 import Image_6 from "./images/inst shots-2.png";
 import Image_7 from "./images/inst shots-3.png";
 import Image_8 from "./images/inst shots.png";
-import Icon from "./images/flower.svg";
 import Image from "next/image";
 import Button from "@/features/base-button/Button";
 import { Instagram } from "lucide-react";
@@ -15,72 +14,59 @@ import Link from "next/link";
 import { SOCIAL_LINKS } from "@/lib/navigation";
 
 const ShareCard = () => {
+  const gallery = [
+    Image_1,
+    Image_2,
+    Image_3,
+    Image_4,
+    Image_5,
+    Image_6,
+    Image_7,
+    Image_8,
+  ];
+
   return (
-    <div className="flex flex-col items-center justify-center pb-20">
-      <div className="flex justify-center px-15 text-[#383838]  font-bold items-center gap-8">
-        <Image
-          src={Icon}
-          alt="icon"
-          width={13}
-          height={50}
-          className="rotate-270  scale-x-[-1]"
-        />
-        <h3 className="md:text-2xl text-[18px] text-center">
-          SHARE HOW YOU BLOSSOMED WITH{" "}
-          <span className="text-[#F5A3B7]">#BLOOMBEAUTY</span>{" "}
-        </h3>
-        <Image
-          src={Icon}
-          alt="icon"
-          width={13}
-          height={50}
-          className="rotate-90"
-        />
+    <section className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
+      <div className="mb-7 flex flex-col items-center text-center sm:mb-9">
+        <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.22em] text-[#a36e69]">
+          The bloom community
+        </p>
+        <h2 className="max-w-[680px] font-serif text-3xl leading-tight tracking-[-0.03em] text-[#20372e] sm:text-4xl">
+          Little moments, shared with{" "}
+          <span className="italic text-[#a36e69]">#BloomBeauty</span>
+        </h2>
+        <p className="mt-3 max-w-[430px] text-sm leading-6 text-[#707970]">
+          Your rituals, your glow, your own lovely way of blooming.
+        </p>
       </div>
-      <Link
-        href="/blog?tag=BLOOMBEAUTY"
-        className="text-[#697586] hidden md:block text-[18px] hover:text-[#F5A3B7]"
-      >
-        See all
-      </Link>
-      <div className="relative w-full ">
-        <div className="flex mt-10 mb-5 gap-1 flex-wrap justify-center  ">
-          {[
-            Image_1,
-            Image_2,
-            Image_3,
-            Image_4,
-            Image_5,
-            Image_6,
-            Image_7,
-            Image_8,
-          ].map((img, index) => (
-            <div
-              key={index}
-              className="inline-block group relative md:mr-4 md:min-w-[250px]"
-            >
-              <Image
-                className=" pb-3 w-[150px] h-[150px]  md:w-[289px] md:h-[289px] group-hover:blur-xs transition duration-300 ease-in-out"
-                src={img}
-                alt="Beauty Kit"
-              />
-              <div className="flex flex-col opacity-0 group-hover:opacity-100 absolute top-40 left-15 gap-3">
-                <Link
-                  href={SOCIAL_LINKS.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex  text-white bg-[#A5A5A5] hover:opacity-100 opacity-70 p-2 rounded-sm cursor-pointer gap-2 justify-center"
-                >
-                  <span>See in </span> <Instagram />
-                </Link>
-                <Button text={"Buy Now"} href="/shop-all" />
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+        {gallery.map((image, index) => (
+          <Link
+            href={SOCIAL_LINKS.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={index}
+            aria-label="Visit Bloom Beauty on Instagram"
+            className="group relative aspect-square overflow-hidden rounded-[1.25rem] bg-[#f5e8e4] sm:rounded-[1.75rem]"
+          >
+            <Image
+              className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105 group-hover:blur-[1px]"
+              src={image}
+              alt={`Bloom Beauty skincare community moment ${index + 1}`}
+              sizes="(max-width: 640px) 50vw, 25vw"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-[#20372e]/0 text-white opacity-0 backdrop-blur-0 transition-all duration-300 group-hover:bg-[#20372e]/25 group-hover:opacity-100 group-hover:backdrop-blur-[2px]">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/60 bg-white/25 backdrop-blur-md">
+                <Instagram className="h-5 w-5" />
+              </span>
+            </span>
+          </Link>
+        ))}
       </div>
-      <Button text={"Follow us"} href={SOCIAL_LINKS.instagram} />
-    </div>
+      <div className="mt-8 flex justify-center">
+        <Button text="Follow our story" href={SOCIAL_LINKS.instagram} />
+      </div>
+    </section>
   );
 };
 

@@ -13,12 +13,12 @@ const BlogDetailView = ({ slug }: BlogDetailViewProps) => {
   const morePosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 2);
 
   return (
-    <div className="w-full min-h-screen bg-[#F9FAFC]">
-      <header className="w-full bg-gradient-to-b from-[#F5E0E5] to-[#F9FAFC] pt-10 pb-6 sm:pt-12 px-4">
+    <main className="min-h-screen w-full bg-[#fbf8f2]">
+      <header className="w-full bg-[radial-gradient(ellipse_at_top,#f5e8e4_0%,#fbf8f2_75%)] px-5 pb-6 pt-10 sm:px-8 sm:pt-12">
         <div className="page-container">
           <Link
             href="/blog"
-            className="inline-flex items-center text-[#F5A3B7] text-sm font-medium hover:underline mb-4"
+            className="mb-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/70 bg-white/50 px-4 text-sm font-medium text-[#526258] backdrop-blur-md transition hover:bg-white/80"
           >
             ← Back to Blog
           </Link>
@@ -44,7 +44,7 @@ const BlogDetailView = ({ slug }: BlogDetailViewProps) => {
       {morePosts.length > 0 && (
         <section className="pb-12 sm:pb-16">
           <div className="page-container flex flex-col gap-6">
-            <h2 className="text-[#383838] text-xl sm:text-2xl font-semibold">
+            <h2 className="font-serif text-2xl text-[#20372e] sm:text-3xl">
               More from the blog
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -52,10 +52,10 @@ const BlogDetailView = ({ slug }: BlogDetailViewProps) => {
                 <Link
                   key={item.slug}
                   href={`/blog/${item.slug}`}
-                  className="bg-white rounded-xl border border-[#DFE1E3]/70 p-5 hover:border-[#F5A3B7] transition-colors"
+                  className="rounded-[1.5rem] border border-[#e9e3dc] bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-[#d3b6a8] hover:shadow-lg"
                 >
-                  <p className="text-[#BFB9CF] text-xs mb-1">{item.data}</p>
-                  <p className="text-[#383838] font-medium leading-snug">
+                  <p className="mb-1 text-[10px] uppercase tracking-[0.12em] text-[#a36e69]">{item.data}</p>
+                  <p className="font-medium leading-snug text-[#20372e]">
                     {item.title}
                   </p>
                 </Link>
@@ -64,7 +64,7 @@ const BlogDetailView = ({ slug }: BlogDetailViewProps) => {
           </div>
         </section>
       )}
-    </div>
+    </main>
   );
 };
 

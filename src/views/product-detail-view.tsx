@@ -4,7 +4,7 @@ import PrimaryButtton from "@/features/primary-buttton/primary-buttton";
 import { getProductBySlug, products } from "@/data/products";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 
 type ProductDetailViewProps = {
   slug: string;
@@ -12,75 +12,93 @@ type ProductDetailViewProps = {
 
 const ProductDetailView = ({ slug }: ProductDetailViewProps) => {
   const product = getProductBySlug(slug)!;
-  const [rating, setRating] = useState(4);
 
   const related = products
     .filter((p) => p.slug !== product.slug && p.category === product.category)
     .slice(0, 3);
 
   return (
-    <div className="bg-[#F9FAFC] py-10 px-4 md:px-10 flex flex-col gap-12">
-      <div className="flex flex-col md:flex-row gap-10 bg-white rounded-xl p-6 md:p-10">
-        <Image
-          src={product.imageUrl}
-          alt={product.title}
-          className="w-full md:w-[45%] h-auto object-cover rounded"
-        />
-        <div className="flex flex-col gap-4 text-[#383838] flex-1">
-          <p className="text-[#BFB9CF] text-sm">{product.category}</p>
-          <h1 className="text-2xl md:text-3xl font-bold">{product.title}</h1>
-          <div className="rating flex gap-1">
-            <span className="text-[#697586]">({rating})</span>
-            {[5, 4, 3, 2, 1].map((value) => (
-              <span
-                key={value}
-                onClick={() => setRating(value)}
-                className={`text-xl cursor-pointer rating_item ${
-                  value <= rating ? "text-[#ffa500]" : "text-[#DFE1E3]"
-                }`}
-              >
-                ★
-              </span>
-            ))}
+    <main className="min-h-[65vh] bg-[#fbf8f2] px-5 py-9 sm:px-8 sm:py-14 lg:px-12">
+      <div className="mx-auto max-w-[1320px]">
+        <div className="grid items-center gap-8 rounded-[2rem] border border-[#eee8e0] bg-white/75 p-4 shadow-[0_30px_90px_-64px_rgba(32,55,46,0.42)] backdrop-blur-md sm:p-8 lg:grid-cols-2 lg:gap-14 lg:p-12">
+          <div className="overflow-hidden rounded-[1.5rem] bg-[#f5e8e4] sm:rounded-[1.75rem]">
+            <Image
+              src={product.imageUrl}
+              alt={product.title}
+              className="aspect-square w-full object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
           </div>
-          <p className="text-[#697586]">{product.info}</p>
-          <p className="text-xl font-medium">{product.price}</p>
-          <p className="text-sm text-[#697586]">
-            Vegan, cruelty-free, and formulated with naturally inspired
-            ingredients for everyday radiance.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <PrimaryButtton text="Add to bag" href="/cart" classname="w-full sm:w-auto" />
-            <Button text="Back to Shop" href="/shop-all" property="w-full sm:w-auto" />
+          <div className="flex flex-col items-start gap-5 px-2 pb-3 sm:px-3 lg:py-5">
+            <Link
+              href="/shop-all"
+              className="text-xs text-[#707970] transition-colors hover:text-[#a36e69]"
+            >
+              Shop all <span aria-hidden="true">/</span> {product.category}
+            </Link>
+            <span className="rounded-full border border-[#e9e3dc] bg-[#f7f2eb] px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.16em] text-[#8e6e66]">
+              {product.category}
+            </span>
+            <h1 className="font-serif text-4xl leading-tight tracking-[-0.04em] text-[#20372e] sm:text-5xl">
+              {product.title}
+            </h1>
+            <p className="text-base leading-7 text-[#707970]">{product.info}</p>
+            <p className="font-serif text-2xl text-[#20372e]">{product.price}</p>
+            <div className="w-full border-y border-[#e9e3dc] py-4 text-sm leading-6 text-[#707970]">
+              Thoughtfully made for your everyday skincare ritual. Vegan,
+              cruelty-free, and inspired by the care of nature.
+            </div>
+            <div className="flex w-full flex-col gap-3 pt-1 sm:flex-row">
+              <PrimaryButtton
+                text="Add to bag"
+                href="/cart"
+                classname="!max-w-none sm:!w-auto sm:!min-w-[180px]"
+              />
+              <Button
+                text="Continue exploring"
+                href="/shop-all"
+                property="w-full sm:w-auto"
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      {related.length > 0 && (
-        <section className="flex flex-col gap-6">
-          <h2 className="text-[#383838] text-xl font-semibold">You may also like</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {related.map((item) => (
-              <Link
-                key={item.slug}
-                href={`/product/${item.slug}`}
-                className="bg-white rounded-xl p-4 flex gap-4 items-center hover:shadow-sm transition"
-              >
-                <Image
-                  src={item.imageUrl}
-                  alt={item.title}
-                  className="w-20 h-20 object-cover rounded"
-                />
-                <div>
-                  <p className="font-medium">{item.title}</p>
-                  <p className="text-sm text-[#697586]">{item.price}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-    </div>
+        {related.length > 0 && (
+          <section className="mt-16 flex flex-col gap-6 sm:mt-20">
+            <div>
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#a36e69]">
+                Keep exploring
+              </p>
+              <h2 className="mt-2 font-serif text-3xl text-[#20372e]">
+                You may also love
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {related.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/product/${item.slug}`}
+                  className="group flex items-center gap-4 rounded-[1.5rem] border border-[#e9e3dc] bg-white/70 p-3 transition hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.title}
+                    className="h-20 w-20 rounded-[1rem] object-cover"
+                  />
+                  <div>
+                    <p className="font-medium text-[#20372e] transition-colors group-hover:text-[#a36e69]">
+                      {item.title}
+                    </p>
+                    <p className="mt-1 text-sm text-[#707970]">{item.price}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </main>
   );
 };
 

@@ -10,54 +10,63 @@ import ImageProductShowcase_2 from "@/pages/(router)/(main)/images/IMAGE.png";
 
 const CollectionPage = () => {
   return (
-    <div className="bg-[#F9FAFC] flex flex-col gap-20 py-10 px-4 md:px-10">
-      <div className="text-center max-w-2xl mx-auto flex flex-col gap-3">
-        <h1 className="text-[#383838] text-2xl md:text-3xl font-bold">
-          COLLECTION
+    <main className="flex flex-col gap-16 bg-[#fbf8f2] px-5 py-10 sm:gap-24 sm:px-8 sm:py-14 lg:px-12">
+      <header className="mx-auto flex max-w-2xl flex-col gap-3 text-center">
+        <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#a36e69]">Made to bloom together</p>
+        <h1 className="font-serif text-4xl tracking-[-0.03em] text-[#20372e] md:text-5xl">
+          The collections
         </h1>
-        <p className="text-[#697586] text-[16px]">
+        <p className="text-sm leading-6 text-[#707970] sm:text-base">
           Curated kits and routines designed to help your skin bloom naturally.
         </p>
-      </div>
+      </header>
 
-      <div className="flex flex-col gap-16">
-        <div className="flex text-[#383838] gap-5 flex-col-reverse md:flex-row">
-          <div className="md:w-[50%] w-full justify-center gap-5 flex flex-col">
-            <h2 className="md:text-[36px] text-[32px] font-medium">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-12 sm:gap-16">
+        <section className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          <div className="flex flex-col items-start justify-center gap-5">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#a36e69]">Daily radiance</p>
+            <h2 className="font-serif text-3xl text-[#20372e] sm:text-4xl">
               Blossom Glow Kit
             </h2>
-            <p className="text-[#697586] text-[16px]">
+            <p className="max-w-xl text-sm leading-7 text-[#707970] sm:text-base">
               {collections[0].description}
             </p>
             <Button text="Shop Collection" href="/shop-all" />
           </div>
-          <Image
-            width={598}
-            height={500}
-            className="self-center"
-            src={ImageProductShowcase}
-            alt="Blossom Glow Kit"
-          />
-        </div>
+          <div className="overflow-hidden rounded-[2rem] bg-[#f5e8e4]">
+            <Image
+              width={598}
+              height={500}
+              className="h-full max-h-[560px] w-full object-cover transition-transform duration-700 hover:scale-[1.025]"
+              src={ImageProductShowcase}
+              alt="Blossom Glow Kit"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+        </section>
 
-        <div className="flex text-[#383838] gap-5 flex-col-reverse md:flex-row-reverse">
-          <div className="md:w-[50%] w-full justify-center gap-5 flex flex-col">
-            <h2 className="md:text-[36px] text-[32px] font-medium">
+        <section className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+          <div className="flex flex-col items-start justify-center gap-5 lg:order-2">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#a36e69]">A little extra care</p>
+            <h2 className="font-serif text-3xl text-[#20372e] sm:text-4xl">
               Floral Essence Masks
             </h2>
-            <p className="text-[#697586] text-[16px]">
+            <p className="max-w-xl text-sm leading-7 text-[#707970] sm:text-base">
               {collections[1].description}
             </p>
             <Button text="Shop Collection" href="/shop-all" />
           </div>
-          <Image
-            width={598}
-            height={500}
-            className="self-center"
-            src={ImageProductShowcase_2}
-            alt="Floral Essence Masks"
-          />
-        </div>
+          <div className="overflow-hidden rounded-[2rem] bg-[#f5e8e4] lg:order-1">
+            <Image
+              width={598}
+              height={500}
+              className="h-full max-h-[560px] w-full object-cover transition-transform duration-700 hover:scale-[1.025]"
+              src={ImageProductShowcase_2}
+              alt="Floral Essence Masks"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+        </section>
       </div>
 
       {collections.map((collection) => {
@@ -66,22 +75,22 @@ const CollectionPage = () => {
         );
 
         return (
-          <section key={collection.slug} className="flex flex-col gap-6">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2">
+          <section key={collection.slug} className="mx-auto flex w-full max-w-[1440px] flex-col gap-6">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
-                <h2 className="text-[#383838] text-xl font-semibold">
+                <h2 className="font-serif text-2xl text-[#20372e] sm:text-3xl">
                   {collection.title}
                 </h2>
-                <p className="text-[#697586] text-sm">{collection.description}</p>
+                <p className="mt-1 text-sm text-[#707970]">{collection.description}</p>
               </div>
               <Link
                 href="/shop-all"
-                className="text-[#F5A3B7] text-sm font-medium hover:underline"
+                className="inline-flex min-h-10 items-center text-sm font-medium text-[#526258] transition-colors hover:text-[#a36e69]"
               >
                 View all products →
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {collectionProducts.map((product) => (
                 <ArrivalsCart
                   key={product.slug}
@@ -97,7 +106,7 @@ const CollectionPage = () => {
           </section>
         );
       })}
-    </div>
+    </main>
   );
 };
 

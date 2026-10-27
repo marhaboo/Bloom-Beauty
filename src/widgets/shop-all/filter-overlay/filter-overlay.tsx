@@ -1,7 +1,7 @@
 "use client";
 import PrimaryButtton from "@/features/primary-buttton/primary-buttton";
 import { ProductFilters, emptyProductFilters } from "@/lib/product-filters";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, SlidersHorizontal } from "lucide-react";
 import React, { useState } from "react";
 
 const filtersData = [
@@ -72,34 +72,48 @@ const FilterOverlay = ({ onApply }: FilterOverlayProps) => {
     });
   };
 
+  const handleReset = () => {
+    setSelected(emptyProductFilters);
+    setMinPrice("");
+    setMaxPrice("");
+    onApply(emptyProductFilters);
+  };
+
   return (
-    <div className="bg-white text-[#383838] w-full rounded-xl border border-[#DFE1E3]/60 p-4">
-      <div className="flex items-center text-2xl font-semibold  gap-1">
-        <h2>Filters</h2> <span className="text-[#F5A3B7] ">•</span>
+    <div className="w-full rounded-[1.5rem] border border-[#e9e3dc] bg-white/70 p-5 text-[#29352f] backdrop-blur-md">
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="inline-flex items-center gap-2 font-serif text-2xl">
+          <SlidersHorizontal className="h-4 w-4 text-[#a36e69]" />
+          Filters
+        </h2>
+        <button
+          type="button"
+          onClick={handleReset}
+          className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#707970] transition-colors hover:text-[#a36e69]"
+        >
+          Clear
+        </button>
       </div>
       {filtersData.map((item, ind) => (
-        <div className="border-b border-[#DFE1E3] py-2.5" key={ind}>
-          <div
-            className="flex items-center cursor-pointer justify-between"
+        <div className="border-b border-[#e9e3dc] py-3" key={item.title}>
+          <button
+            type="button"
+            className="flex min-h-10 w-full items-center justify-between text-left"
             onClick={() => setActiveIndex(activeIndex === ind ? null : ind)}
+            aria-expanded={activeIndex === ind}
           >
-            <div className="flex gap-1 ">
-              <p className="font-medium text-sm">{item.title}</p>{" "}
-              {activeIndex === ind && (
-                <span className="text-[#F5A3B7] ">•</span>
-              )}
-            </div>
+            <span className="text-sm font-medium">{item.title}</span>
             {activeIndex === ind ? (
-              <ChevronUp className="text-[#BFB9CF]" />
+              <ChevronUp className="h-4 w-4 text-[#a36e69]" />
             ) : (
-              <ChevronDown className="text-[#BFB9CF]" />
+              <ChevronDown className="h-4 w-4 text-[#707970]" />
             )}
-          </div>
+          </button>
           {activeIndex === ind &&
             item.options.map((option, optionIndex) => (
               <label
                 key={optionIndex}
-                className="flex items-center  pt-2.5  gap-3 text-sm cursor-pointer"
+                className="flex cursor-pointer items-center gap-3 pt-3 text-sm text-[#526258]"
               >
                 <input
                   type={item.type}
@@ -124,25 +138,29 @@ const FilterOverlay = ({ onApply }: FilterOverlayProps) => {
             <div className="flex  gap-2 mt-2 pr-5">
               <input
                 type="number"
-                placeholder="$  Min"
+                min="0"
+                placeholder="Min $"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                className="border px-2 py-1 rounded w-full text-sm"
+                className="w-full rounded-xl border border-[#e9e3dc] bg-white/80 px-3 py-2 text-sm outline-none transition focus:border-[#a36e69]"
               />
               <input
                 type="number"
-                placeholder="$  Max"
+                min="0"
+                placeholder="Max $"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                className="border px-2 py-1 rounded w-full text-sm"
+                className="w-full rounded-xl border border-[#e9e3dc] bg-white/80 px-3 py-2 text-sm outline-none transition focus:border-[#a36e69]"
               />
             </div>
           )}
         </div>
       ))}
-      <div onClick={handleApply}>
-        <PrimaryButtton text="Apply" />
-      </div>
+      <PrimaryButtton
+        text="Apply filters"
+        classname="!mt-5 !max-w-none"
+        onClick={handleApply}
+      />
     </div>
   );
 };

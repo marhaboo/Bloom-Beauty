@@ -123,88 +123,36 @@ const TabAbout = ({ tabName }: TabAboutProps) => {
   };
 
   return (
-    <section className='
-      w-full max-w-none
-      px-4 py-6
-      sm:px-6 sm:py-8
-      md:px-8 md:py-10
-      lg:px-12 lg:py-12
-      xl:px-20 xl:py-16
-      rounded-xl text-[#383838] bg-white
-    '>
+    <section className="w-full rounded-[1.75rem] border border-[#e9e3dc] bg-white/75 px-5 py-6 text-[#20372e] backdrop-blur-md sm:px-8 sm:py-10 lg:px-12 lg:py-12">
       {section.headers.map((header, headerInd) => (
-        <div 
-          key={headerInd} 
-          className='
-            w-full
-            mb-6 sm:mb-8 md:mb-10 lg:mb-12
-          '
-        >
-          <h1 className='
-            font-bold 
-            text-lg sm:text-xl md:text-2xl lg:text-3xl
-            border-b border-[#97a3b0]
-            pb-3 sm:pb-4 md:pb-5 lg:pb-6  
-          '>
+        <div key={headerInd} className="mb-8 w-full last:mb-0 sm:mb-10">
+          <h2 className="border-b border-[#e9e3dc] pb-4 font-serif text-2xl sm:text-3xl">
             {header.title}
-          </h1>
+          </h2>
           
           {header.subtitles.map((sub, subInd) => {
             const key = `${headerInd}-${subInd}`;
             const isOpen = openItems[key];
             
             return (
-              <div key={subInd} className='mb-3 sm:mb-4'>
+              <div key={subInd} className="border-b border-[#e9e3dc] last:border-0">
                 <button
-                  role="button"
-                  className='
-                    w-full text-left
-                    border-b border-[#97a3b0] 
-                    leading-5 
-                    py-3 px-2
-                    sm:py-4 sm:px-3
-                    md:py-4 md:px-4
-                    lg:py-5 lg:px-5
-                    font-medium 
-                    text-sm sm:text-base md:text-lg
-                    flex items-center justify-between 
-                    cursor-pointer
-          
-                    transition-colors duration-200
-                  '
+                  type="button"
+                  aria-expanded={isOpen}
+                  className="flex min-h-14 w-full cursor-pointer items-center justify-between gap-4 py-3 text-left text-sm font-medium leading-6 text-[#29352f] transition-colors duration-200 hover:text-[#a36e69] sm:text-base"
                   onClick={() => toggleItem(key)}
                 >
-                  <span className='flex-1 pr-2'>{sub.title}</span>
+                  <span className="flex-1">{sub.title}</span>
                   {isOpen ? (
-                    <ChevronUp className="
-                      w-4 h-4 
-                      sm:w-5 sm:h-5 
-                      md:w-6 md:h-6
-                      flex-shrink-0
-                    " />
+                    <ChevronUp className="h-4 w-4 shrink-0 text-[#a36e69]" />
                   ) : (
-                    <ChevronDown className="
-                      w-4 h-4 
-                      sm:w-5 sm:h-5 
-                      md:w-6 md:h-6
-                      flex-shrink-0
-                    " />
+                    <ChevronDown className="h-4 w-4 shrink-0 text-[#707970]" />
                   )}
                 </button>
                 
                 {isOpen && (
-                  <div className='
-                    border-b border-[#97a3b0]
-                    pb-3 sm:pb-4 md:pb-5
-                    mt-2 sm:mt-3
-                    pl-2 sm:pl-3 md:pl-4 lg:pl-5
-                    pr-2 sm:pr-3 md:pr-4
-                  '>
-                    <p className='
-                      text-sm sm:text-base md:text-lg
-                      leading-relaxed
-                      text-gray-700
-                    '>
+                  <div className="pb-5 pr-8">
+                    <p className="text-sm leading-7 text-[#707970]">
                       {sub.desc}
                     </p>
                   </div>

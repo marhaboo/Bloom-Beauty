@@ -1,4 +1,5 @@
 "use client";
+
 import ArrivalsCart from "@/features/new-arrivals/newArrivals";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -7,80 +8,105 @@ import Image_1 from "./images/img.png";
 import Image_2 from "./images/img-1.png";
 import Image_3 from "./images/img-2.png";
 import Image_4 from "./images/img-3.png";
+import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
 const arrivalProducts = [
-  { image: Image_1, slug: products[0]?.slug ?? "cloud-jelly", title: products[0]?.title ?? "Cloud Jelly", info: products[0]?.info ?? "", price: products[0]?.price ?? "$31" },
-  { image: Image_2, slug: products[1]?.slug ?? "clarifying-emulsion", title: products[1]?.title ?? "Clarifying Emulsion", info: products[1]?.info ?? "", price: products[1]?.price ?? "$29" },
-  { image: Image_3, slug: products[2]?.slug ?? "clay-mask-2x", title: products[2]?.title ?? "Clay Mask 2X", info: products[2]?.info ?? "", price: products[2]?.price ?? "$34" },
-  { image: Image_4, slug: products[3]?.slug ?? "silk-feel-lotion", title: products[3]?.title ?? "Silk Feel Lotion", info: products[3]?.info ?? "", price: products[3]?.price ?? "$27" },
-];
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Icon from "./images/flower.svg";
-import Image from "next/image";
-import { scrollCarouselToIndex } from "@/lib/carousel";
+  { image: Image_1, product: products[0] },
+  { image: Image_2, product: products[1] },
+  { image: Image_3, product: products[2] },
+  { image: Image_4, product: products[3] },
+].map(({ image, product }) => ({
+  image,
+  slug: product.slug,
+  title: product.title,
+  info: product.info,
+  price: product.price,
+}));
+
 const NewArrivals = () => {
-  const scrollBar = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleScroll = () => {
-    if (scrollBar.current) {
-      const scrollLeft = scrollBar.current.scrollLeft;
-      const cardWidth = 270;
-      const index = Math.round(scrollLeft / cardWidth);
-      setActiveIndex(index);
-    }
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const cards = Array.from(carousel.children);
+    const nextIndex = cards.reduce(
+      (closestIndex, card, index) => {
+        const distance = Math.abs(
+          card.getBoundingClientRect().left +
+            card.getBoundingClientRect().width / 2 -
+            carousel.getBoundingClientRect().left -
+            carousel.clientWidth / 2,
+        );
+        return distance < closestIndex.distance
+          ? { index, distance }
+          : closestIndex;
+      },
+      { index: 0, distance: Number.POSITIVE_INFINITY },
+    ).index;
+    setActiveIndex(nextIndex);
   };
 
-  const leftScroll = () => {
-    if (scrollBar.current) {
-      scrollBar.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
+  const scrollByCard = (direction: -1 | 1) => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    carousel.scrollBy({
+      left: direction * carousel.clientWidth * 0.8,
+      behavior: "smooth",
+    });
   };
 
-  const rightScroll = () => {
-    if (scrollBar.current) {
-      scrollBar.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
+  const scrollToCard = (index: number) => {
+    const carousel = carouselRef.current;
+    const card = carousel?.children.item(index);
+    if (!carousel || !(card instanceof HTMLElement)) return;
+
+    carousel.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+    setActiveIndex(index);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="flex justify-center text-[#383838] font-bold items-center gap-8">
-        <Image
-          src={Icon}
-          alt="icon"
-          width={13}
-          height={50}
-          className="rotate-270  scale-x-[-1]"
-        />
-        <h3 className="text-2xl">NEW ARRIVALS </h3>
-        <Image
-          src={Icon}
-          alt="icon"
-          width={13}
-          height={50}
-          className="rotate-90"
-        />
+    <section className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-10">
+      <div className="mb-7 flex flex-col items-center text-center sm:mb-9">
+        <p className="mb-2 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.24em] text-[#a36e69] sm:text-[11px]">
+          <Sparkles className="h-3.5 w-3.5" strokeWidth={1.5} />
+          Fresh from the garden
+        </p>
+        <h2 className="font-serif text-3xl tracking-[0.04em] text-[#20372e] sm:text-4xl lg:text-[42px]">
+          New arrivals
+        </h2>
+        <span className="mt-3 h-px w-12 bg-[#b99d77]" />
+        <Link
+          href="/shop-all"
+          className="group mt-3 inline-flex items-center gap-1.5 text-sm text-[#526258] transition-colors hover:text-[#a36e69]"
+        >
+          Explore all skincare
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
-      <Link href="/shop-all" className="text-[#697586] text-[18px] hover:text-[#F5A3B7]">See all</Link>
-      <div className="relative w-full lg:max-w-[1200px]">
+
+      <div className="relative">
         <button
           type="button"
-          onClick={leftScroll}
+          onClick={() => scrollByCard(-1)}
           aria-label="Scroll new arrivals left"
-          className="flex justify-center scrollbar-hidden items-center scroll-smooth overflow-x-hidden bg-[#DEDAE5] rounded-full h-8 w-8 absolute opacity-65 top-1/2  left-0 translate-y-1/2   "
+          className="absolute -left-3 top-[38%] z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#e7ddd2] bg-[#fffdf9]/90 text-[#29352f] shadow-sm transition hover:bg-[#29352f] hover:text-white sm:flex lg:-left-5"
         >
-          <ChevronLeft className="text-white" />
+          <ChevronLeft className="h-5 w-5" />
         </button>
         <div
-          ref={scrollBar}
+          ref={carouselRef}
           onScroll={handleScroll}
-          className="overflow-x-auto scrollbar-hidden flex my-10 gap-10 n scroll-smooth px-10 "
+          aria-label="New skincare arrivals"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-5 pt-1 sm:gap-5 lg:gap-6"
         >
-          {[...arrivalProducts, ...arrivalProducts].map((item, index) => (
-            <div
-              key={index}
-              className="inline-block no-scrollbar  mr-4 min-w-[250px]"
+          {arrivalProducts.map((item) => (
+            <article
+              key={item.slug}
+              className="w-[82%] flex-none snap-start sm:w-[44%] lg:w-[calc((100%-4.5rem)/4)]"
             >
               <ArrivalsCart
                 imageUrl={item.image}
@@ -89,35 +115,34 @@ const NewArrivals = () => {
                 price={item.price}
                 href={`/product/${item.slug}`}
               />
-            </div>
+            </article>
           ))}
         </div>
         <button
           type="button"
-          onClick={rightScroll}
+          onClick={() => scrollByCard(1)}
           aria-label="Scroll new arrivals right"
-          className="      bg-[#DEDAE5] flex justify-center items-center opacity-65 rounded-full h-8 w-8 top-1/2 absolute right-0 translate-y-1/2 "
+          className="absolute -right-3 top-[38%] z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#e7ddd2] bg-[#fffdf9]/90 text-[#29352f] shadow-sm transition hover:bg-[#29352f] hover:text-white sm:flex lg:-right-5"
         >
-          <ChevronRight className="text-white" />
+          <ChevronRight className="h-5 w-5" />
         </button>
       </div>
-      <div className="flex gap-2">
-        {[0, 1, 2].map((i) => (
+
+      <div className="mt-1 flex justify-center gap-2 sm:hidden">
+        {arrivalProducts.map((item, index) => (
           <button
             type="button"
-            key={i}
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => {
-              scrollCarouselToIndex(scrollBar.current, i, 270);
-              setActiveIndex(i);
-            }}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              activeIndex === i ? "bg-[#383838]" : "bg-[#DFE1E3]"
+            key={item.slug}
+            aria-label={`Go to ${item.title}`}
+            aria-current={activeIndex === index}
+            onClick={() => scrollToCard(index)}
+            className={`h-1.5 rounded-full transition-all ${
+              activeIndex === index ? "w-6 bg-[#29352f]" : "w-1.5 bg-[#d8cdc4]"
             }`}
-          ></button>
+          />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

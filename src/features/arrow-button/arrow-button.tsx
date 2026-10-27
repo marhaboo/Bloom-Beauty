@@ -25,7 +25,7 @@ const ArrowButton = ({
       ? "↑"
       : "↓";
 
-  const className = `text-[#383838] ${property} font-medium hover:cursor-pointer text-sm px-[55px] py-[10px] inline-block`;
+  const className = `inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-medium text-[#526258] transition hover:bg-[#f5e8e4] hover:text-[#20372e] ${property}`;
 
   if (href) {
     return (

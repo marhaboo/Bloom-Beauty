@@ -48,7 +48,7 @@ const CategoryScroll = ({
   };
 
   return (
-    <section className="w-full bg-[#F7CFDA] border-y border-[#F5A3B7]/25">
+    <section className="w-full border-y border-[#e9e3dc] bg-[#f7f2eb]">
       {/* Desktop / tablet: full-width band with centered scroll track */}
       <div className="hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 relative">
@@ -63,7 +63,7 @@ const CategoryScroll = ({
 
           <div
             ref={scrollRef}
-            className="overflow-x-auto scrollbar-hidden mx-10 sm:mx-12"
+            className="mx-10 overflow-x-auto sm:mx-12"
           >
             <div className="flex gap-3 w-max min-w-full justify-start px-1">
               {categories.map((cat) => (
@@ -73,8 +73,8 @@ const CategoryScroll = ({
                   key={cat}
                   className={`flex-shrink-0 font-semibold text-xs sm:text-sm px-5 sm:px-7 py-2.5 sm:py-3 rounded-full transition-all duration-200 whitespace-nowrap ${
                     activeCategories.includes(cat)
-                      ? "bg-[#F5A3B7] text-white shadow-sm"
-                      : "bg-white text-[#383838] hover:bg-[#383838] hover:text-white"
+                      ? "bg-[#20372e] text-white shadow-sm"
+                      : "border border-[#e8dfd5] bg-white/70 text-[#526258] backdrop-blur-md hover:border-[#c8b7a3] hover:bg-white"
                   }`}
                 >
                   {cat}
@@ -110,8 +110,8 @@ const CategoryScroll = ({
               onClick={() => toggleCategory(cat)}
               className={`text-xs font-medium px-3 py-1.5 rounded-full ${
                 activeCategories.includes(cat)
-                  ? "bg-[#F5A3B7] text-white"
-                  : "bg-white text-[#383838]"
+                  ? "bg-[#20372e] text-white"
+                  : "bg-white/70 text-[#526258]"
               }`}
             >
               {cat}

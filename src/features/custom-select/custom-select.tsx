@@ -7,12 +7,14 @@ type CustomSelectTypes = {
   options: string[];
   value?: string;
   onChange?: (value: string) => void;
+  ariaLabel?: string;
 };
 
 export default function CustomSelect({
   options,
   value,
   onChange,
+  ariaLabel,
 }: CustomSelectTypes) {
   const [internalValue, setInternalValue] = useState(options[0]);
   const selected = value ?? internalValue;
@@ -29,18 +31,21 @@ export default function CustomSelect({
     <div className="w-full">
       <Listbox value={selected} onChange={handleChange}>
         <div className="relative w-full">
-          <Listbox.Button className="w-full bg-white border border-[#DFE1E3] rounded-lg px-4 py-3 flex justify-between items-center text-[#383838] text-sm font-medium">
+          <Listbox.Button
+            aria-label={ariaLabel}
+            className="flex w-full items-center justify-between rounded-full border border-[#e9e3dc] bg-white/70 px-4 py-2.5 text-sm font-medium text-[#29352f] backdrop-blur-md transition hover:border-[#c8b7a3]"
+          >
             {selected}
-            <ChevronDown className="w-4 h-4 ml-2" />
+            <ChevronDown className="ml-2 h-4 w-4" />
           </Listbox.Button>
-          <Listbox.Options className="absolute mt-1 w-full bg-white border border-gray-200 rounded shadow-lg z-10">
+          <Listbox.Options className="absolute z-10 mt-2 w-full rounded-2xl border border-[#e9e3dc] bg-[#fffdf9] py-1 shadow-xl">
             {options.map((option, idx) => (
               <Listbox.Option
                 key={idx}
                 value={option}
                 className={({ active, selected: isSelected }) =>
                   `cursor-pointer px-4 py-2 text-sm ${
-                    active ? "bg-pink-200 text-pink-900" : "text-gray-800"
+                    active ? "bg-[#f5e8e4] text-[#20372e]" : "text-[#526258]"
                   } ${isSelected ? "font-semibold" : ""}`
                 }
               >

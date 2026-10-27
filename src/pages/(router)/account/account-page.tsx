@@ -40,17 +40,19 @@ const AccountPageContent = () => {
   const wishlistProducts = products.slice(0, 4);
 
   return (
-    <div className="bg-[#F7F6F8] min-h-screen p-4 md:p-10 flex flex-col lg:flex-row gap-6">
-      <nav className="bg-white rounded-xl p-4 lg:w-72 flex flex-col gap-2 lg:sticky lg:top-10 h-fit">
-        <h1 className="text-[#383838] text-xl font-bold px-2 pb-2">My Account</h1>
+    <main className="min-h-[65vh] bg-[#fbf8f2] px-5 py-8 sm:px-8 sm:py-12 lg:px-12">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-5 lg:flex-row lg:items-start">
+      <nav className="flex h-fit flex-col gap-2 rounded-[1.5rem] border border-[#e9e3dc] bg-white/70 p-4 backdrop-blur-md lg:sticky lg:top-28 lg:w-72">
+        <h1 className="px-3 pb-2 font-serif text-2xl text-[#20372e]">My account</h1>
         {tabItems.map((item) => (
           <button
             key={item.key}
+            type="button"
             onClick={() => selectTab(item.key)}
-            className={`cursor-pointer text-left px-4 py-3 rounded-lg font-medium transition-all ${
+            className={`min-h-11 cursor-pointer rounded-full px-4 py-3 text-left text-sm font-medium transition-all ${
               tab === item.key
-                ? "text-[#F5A3B7] bg-pink-50 border-l-4 border-[#F5A3B7]"
-                : "text-black hover:text-[#F5A3B7] hover:bg-pink-50"
+                ? "bg-[#20372e] text-white shadow-sm"
+                : "text-[#526258] hover:bg-[#f5e8e4] hover:text-[#20372e]"
             }`}
           >
             {item.label}
@@ -58,28 +60,28 @@ const AccountPageContent = () => {
         ))}
       </nav>
 
-      <section className="flex-1 bg-white rounded-xl p-6 md:p-10 text-[#383838]">
+      <section className="min-w-0 flex-1 rounded-[1.5rem] border border-[#e9e3dc] bg-white/75 p-5 text-[#20372e] backdrop-blur-md sm:p-8 lg:p-10">
         {tab === "overview" && (
           <div className="flex flex-col gap-4">
-            <h2 className="text-2xl font-bold border-b border-[#97a3b0] pb-4">
+            <h2 className="border-b border-[#e9e3dc] pb-4 font-serif text-3xl">
               Welcome back
             </h2>
-            <p className="text-[#697586]">
+            <p className="max-w-2xl leading-6 text-[#707970]">
               Manage your orders, saved addresses, and wishlist from this
               dashboard. This is a demo account area for portfolio presentation.
             </p>
-            <div className="grid md:grid-cols-3 gap-4 pt-4">
-              <div className="border border-[#DFE1E3] rounded p-4">
-                <p className="text-[#BFB9CF] text-sm">Recent order</p>
+            <div className="grid gap-4 pt-4 md:grid-cols-3">
+              <div className="rounded-[1.25rem] border border-[#e9e3dc] bg-[#fbf8f2] p-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-[#a36e69]">Recent order</p>
                 <p className="font-medium">#BB-10482</p>
-                <p className="text-sm text-[#697586]">Shipped · 2 items</p>
+                <p className="text-sm text-[#707970]">Shipped · 2 items</p>
               </div>
-              <div className="border border-[#DFE1E3] rounded p-4">
-                <p className="text-[#BFB9CF] text-sm">Saved addresses</p>
+              <div className="rounded-[1.25rem] border border-[#e9e3dc] bg-[#fbf8f2] p-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-[#a36e69]">Saved addresses</p>
                 <p className="font-medium">2 locations</p>
               </div>
-              <div className="border border-[#DFE1E3] rounded p-4">
-                <p className="text-[#BFB9CF] text-sm">Wishlist</p>
+              <div className="rounded-[1.25rem] border border-[#e9e3dc] bg-[#fbf8f2] p-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-[#a36e69]">Wishlist</p>
                 <p className="font-medium">{wishlistProducts.length} items</p>
               </div>
             </div>
@@ -88,7 +90,7 @@ const AccountPageContent = () => {
 
         {tab === "addresses" && (
           <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold border-b border-[#97a3b0] pb-4">
+            <h2 className="border-b border-[#e9e3dc] pb-4 font-serif text-3xl">
               Addresses
             </h2>
             {[
@@ -105,15 +107,15 @@ const AccountPageContent = () => {
             ].map((address) => (
               <div
                 key={address.label}
-                className="border border-[#DFE1E3] rounded p-4 flex flex-col gap-2"
+                className="flex flex-col gap-2 rounded-[1.25rem] border border-[#e9e3dc] p-5"
               >
                 <div className="flex justify-between items-center">
                   <p className="font-medium">{address.label}</p>
                   {address.default && (
-                    <span className="text-xs text-[#F5A3B7]">Default</span>
+                    <span className="rounded-full bg-[#f5e8e4] px-3 py-1 text-[10px] uppercase tracking-[0.12em] text-[#8e6e66]">Default</span>
                   )}
                 </div>
-                <p className="text-[#697586] text-sm">{address.line}</p>
+                <p className="text-sm text-[#707970]">{address.line}</p>
               </div>
             ))}
           </div>
@@ -121,7 +123,7 @@ const AccountPageContent = () => {
 
         {tab === "orders" && (
           <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold border-b border-[#97a3b0] pb-4">
+            <h2 className="border-b border-[#e9e3dc] pb-4 font-serif text-3xl">
               Order Status
             </h2>
             {[
@@ -140,13 +142,13 @@ const AccountPageContent = () => {
             ].map((order) => (
               <div
                 key={order.id}
-                className="border border-[#DFE1E3] rounded p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2"
+                className="flex flex-col gap-2 rounded-[1.25rem] border border-[#e9e3dc] p-5 md:flex-row md:items-center md:justify-between"
               >
                 <div>
                   <p className="font-medium">{order.id}</p>
-                  <p className="text-sm text-[#697586]">{order.date}</p>
+                  <p className="text-sm text-[#707970]">{order.date}</p>
                 </div>
-                <p className="text-[#F5A3B7] font-medium">{order.status}</p>
+                <p className="font-medium text-[#a36e69]">{order.status}</p>
                 <p className="font-medium">{order.total}</p>
               </div>
             ))}
@@ -155,10 +157,10 @@ const AccountPageContent = () => {
 
         {tab === "wishlist" && (
           <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold border-b border-[#97a3b0] pb-4">
+            <h2 className="border-b border-[#e9e3dc] pb-4 font-serif text-3xl">
               Wishlist
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               {wishlistProducts.map((product) => (
                 <ArrivalsCart
                   key={product.slug}
@@ -173,7 +175,8 @@ const AccountPageContent = () => {
           </div>
         )}
       </section>
-    </div>
+      </div>
+    </main>
   );
 };
 
@@ -181,7 +184,7 @@ const AccountPage = () => {
   return (
     <Suspense
       fallback={
-        <div className="bg-[#F7F6F8] p-10 text-[#697586]">Loading account...</div>
+        <div className="min-h-[50vh] bg-[#fbf8f2] p-10 text-[#707970]">Loading account...</div>
       }
     >
       <AccountPageContent />

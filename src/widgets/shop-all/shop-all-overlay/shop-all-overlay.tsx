@@ -37,7 +37,7 @@ const shopAllData = [
   { title: "Makeup & Tools", items: [] },
 ];
 
-const ShopAllOverLay = () => {
+const ShopAllOverLay = ({ onNavigate }: { onNavigate?: () => void }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleOpen = (index: number) => {
@@ -45,32 +45,38 @@ const ShopAllOverLay = () => {
   };
 
   return (
-    <div className="bg-white p-4 ">
+    <div className="bg-transparent px-4 py-3">
       {shopAllData.map((item, ind) => (
-        <div className="flex flex-col mb-2" key={ind}>
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() => toggleOpen(ind)}
-          >
+        <div className="flex flex-col border-b border-[#e9e3dc] py-2 last:border-0" key={item.title}>
+          <div className="flex items-center justify-between gap-3">
             <Link
               href={searchHref(item.title)}
-              onClick={(e) => e.stopPropagation()}
-              className="text-[#697586] font-medium text-[16px] hover:text-[#F5A3B7]"
+              onClick={onNavigate}
+              className="py-2 text-sm font-medium text-[#526258] transition-colors hover:text-[#a36e69]"
             >
               {item.title}
             </Link>
-            {openIndex === ind ? (
-              <ChevronUp className="text-[#697586] w-5 h-5 mr-1.5" />
-            ) : (
-              <ChevronDown className="text-[#697586] w-5 h-5 mr-1.5" />
-            )}
+            <button
+              type="button"
+              onClick={() => toggleOpen(ind)}
+              aria-label={`${openIndex === ind ? "Collapse" : "Expand"} ${item.title}`}
+              aria-expanded={openIndex === ind}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-[#707970] transition-colors hover:bg-[#f5e8e4] hover:text-[#20372e]"
+            >
+              {openIndex === ind ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
+            </button>
           </div>
           {openIndex === ind &&
             item.items.map((subItem, subIndex) => (
               <Link
                 href={searchHref(subItem)}
-                className="text-[14px] text-gray-600 ml-4 mt-1 block hover:text-[#F5A3B7]"
-                key={subIndex}
+                onClick={onNavigate}
+                className="ml-3 block py-1.5 text-xs text-[#707970] transition-colors hover:text-[#a36e69]"
+                key={`${item.title}-${subIndex}`}
               >
                 {subItem}
               </Link>
